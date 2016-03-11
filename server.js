@@ -6,9 +6,8 @@ var path = require('path');
 //adds link to server for all the static file in the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function(req, res){
-	res.sendFile(__dirname + "/index.html")
-});
+var routes = require('./routes/index');
+app.use('/', routes);
 
 http.listen(8000, function(){
 	console.log('Server running');
