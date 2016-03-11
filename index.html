@@ -3,10 +3,52 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="/css/materialize.min.css">
-	<script src="/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="./public/css/materialize.min.css">
+	<!--<link rel="stylesheet" href="./node_modules/angular-materialize/css/style.css">-->
+	<script src="./node_modules/jquery/dist/jquery.js"></script>
+	<script src="./public/js/materialize.min.js"></script>
+	<script src="./node_modules/angular/angular.js"></script>
+	<script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-	<h1 class="teal center">Hello</h1>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+	<li><a href="#">one</a></li>
+	<li><a href="#">two</a></li>
+	<li class="divider"></li>
+	<li><a href="#">three</a></li>
+</ul>
+<nav class="blue darken-3" role="navigation">
+	<div class="nav-wrapper">
+		<a href="#" class="brand-logo center">CodeEditorInc</a>
+		<ul class="right hide-on-med-and-down">
+			<li><a href="#">Sass</a></li>
+			<li><a href="#">Components</a></li>
+			<!-- Dropdown Trigger -->
+			<li><a class="dropdown-button" href="#" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+		</ul>
+	</div>
+</nav>
+
+<script type="application/javascript">
+
+	$(".dropdown-button").dropdown();
+
+</script>
+
+<div class="row">
+
+	<div class="col s6">
+		<h1 class="teal center">Hello</h1>
+	</div>
+
+	<div class="col s6">
+		<h1 class="teal center">Hello</h1>
+	</div>
+
+</div>
+
+
 </body>
 </html>
