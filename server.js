@@ -9,6 +9,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 var routes = require('./routes/index');
 app.use('/', routes);
 
+var testeGenerareRandom = require('./routes/testeGenerareRandom');
+app.use('/testeGenerareRandom', testeGenerareRandom);
+
 http.listen(8000, function(){
 	console.log('Server running');
 });
