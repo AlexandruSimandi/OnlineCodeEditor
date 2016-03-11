@@ -9,9 +9,10 @@
 	<script src="./public/js/materialize.min.js"></script>
 	<script src="./node_modules/angular/angular.js"></script>
 	<script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="./public/js/app/app.js"></script>
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<body ng-app="codeEditorApp">
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
 	<li><a href="#">one</a></li>
@@ -23,8 +24,8 @@
 	<div class="nav-wrapper">
 		<a href="#" class="brand-logo center">CodeEditorInc</a>
 		<ul class="right hide-on-med-and-down">
-			<li><a href="#">Sass</a></li>
-			<li><a href="#">Components</a></li>
+			<li><a ui-sref=".about">About</a></li>
+			<li><a ui-sref=".settings">Settings</a></li>
 			<!-- Dropdown Trigger -->
 			<li><a class="dropdown-button" href="#" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
 		</ul>
@@ -38,6 +39,8 @@
 </script>
 
 <div class="row">
+
+	<div ui-view></div>
 
 	<div class="col s6">
 		<h1 class="teal center">Hello</h1>
