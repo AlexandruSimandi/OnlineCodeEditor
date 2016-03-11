@@ -6,7 +6,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.sendFile(__dirname + "/index.html")
+    res.sendFile(global.projectDir + "/index.html")
 });
 
 /* EXPORT the index route */

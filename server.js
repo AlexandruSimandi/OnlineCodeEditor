@@ -13,5 +13,6 @@ var testeGenerareRandom = require('./routes/testeGenerareRandom');
 app.use('/testeGenerareRandom', testeGenerareRandom);
 
 http.listen(8000, function(){
+	global.projectDir = __dirname;
 	console.log('Server running');
 });
