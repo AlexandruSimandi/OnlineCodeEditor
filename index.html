@@ -11,8 +11,9 @@
 	<script src="/js/angular-ui-router.min.js"></script>
 	<script src="/js/app/app.js"></script>
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/css/index.css">
 </head>
-<body ng-app="codeEditorApp">
+<body class="green lighten-5" ng-app="codeEditorApp">
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
 	<li><a href="#">one</a></li>
@@ -20,9 +21,9 @@
 	<li class="divider"></li>
 	<li><a href="#">three</a></li>
 </ul>
-<nav class="blue darken-3" role="navigation">
+<nav class="green darken-4" role="navigation">
 	<div class="nav-wrapper">
-		<a href="#" class="brand-logo center">CodeEditorInc</a>
+		<a href="#" class="brand-logo center">CodeEditorInc$$</a>
 		<ul class="right hide-on-med-and-down">
 			<li><a ui-sref=".about">About</a></li>
 			<li><a ui-sref=".settings">Settings</a></li>
@@ -37,21 +38,13 @@
 	$(".dropdown-button").dropdown();
 
 </script>
+<main>
+	<div class="container">
 
-<div class="row">
+		<div class="card-panel" ui-view></div>
 
-	<div ui-view></div>
-
-	<div class="col s6">
-		<h1 class="teal center">Hello</h1>
 	</div>
-
-	<div class="col s6">
-		<h1 class="teal center">Hello</h1>
-	</div>
-
-</div>
-
+</main>
 
 </body>
 </html>
