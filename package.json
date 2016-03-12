@@ -12,11 +12,8 @@
   "author": "",
   "contributors": ["Alexandru Simandi", "Robert Sandu"],
   "dependencies": {
-    "angular": "^1.5.0",
-    "angular-materialize": "^0.1.3",
-    "angular-ui-router": "^0.2.17",
+
     "express": "^4.13.4",
-    "jquery": "^2.2.1",
     "mongodb": "^2.1.7",
     "mongoose": "^4.4.6",
     "morgan": "^1.7.0",
@@ -25,5 +22,14 @@
     "socket.io": "^1.4.5"
 
   },
+
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "gulp": "^3.9.1",
+    "gulp-bower": "^0.0.13",
+    "gulp-notify": "^2.2.0",
+    "gulp-connect": "^3.1.0"
+  },
+
   "license": "ISC"
 }
