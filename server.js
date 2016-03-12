@@ -7,13 +7,20 @@ var gulp = require('gulp');
 //adds link to server for all the static file in the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-var routes = require('./routes/index');
-app.use('/', routes);
+var routes = require('./routes/routes.js');
+// app.use('/', routes);
+//
+// var testeGenerareRandom = require('./routes/testeGenerareRandom');
+// app.use('/testeGenerareRandom', testeGenerareRandom);
+//
+// app.get('/testeGenerareRandom', function(req, res){
+//     res.send('Hello World');
+// });
+routes(app);
 
-var testeGenerareRandom = require('./routes/testeGenerareRandom');
-app.use('/testeGenerareRandom', testeGenerareRandom);
+app.set('port', process.env.PORT || 3300);
 
-app.listen(3000, function () {
+app.listen(app.get('port'), function () {
     global.projectDir = __dirname;
-    console.log('Example app listening on port 3000!');
+    console.log('Example app listening on port ' + app.get('port') + '!');
 });
