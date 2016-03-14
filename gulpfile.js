@@ -33,3 +33,5 @@ gulp.task('javascript',function(){
 gulp.task('icons', function(){
 
 });
+
+gulp.task('default', ['javascript']);
