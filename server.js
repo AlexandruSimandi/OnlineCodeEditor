@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 var gulp = require('gulp');
+var sio = require('socket.io');
 
 //adds link to server for all the static file in the public folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -18,9 +19,22 @@ var routes = require('./routes/routes.js');
 // });
 routes(app);
 
+
+
 app.set('port', process.env.PORT || 3300);
 
 app.listen(app.get('port'), function () {
     global.projectDir = __dirname;
     console.log('Example app listening on port ' + app.get('port') + '!');
+});
+
+var io = sio.listen(http);
+
+io.sockets.on('connection', function(socket){
+	console.log('client connected');
+
+	socket.on('text change', function(msg){
+		console.log(msg);
+		socket.broadcast.emit('text change',msg);
+	});
 });
