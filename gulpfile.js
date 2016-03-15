@@ -33,6 +33,9 @@ gulp.task('javascript',function(){
     gulp
         .src(config.nodeModulesDir + '/ace-editor-builds/src/**/*')
         .pipe(gulp.dest('./public/js/ace'));
+	gulp
+		.src(config.bowerDir + "/socket.io-client/socket.io.js")
+		.pipe(gulp.dest('./public/js'));
 });
 
 
