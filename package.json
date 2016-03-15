@@ -19,7 +19,8 @@
     "morgan": "^1.7.0",
     "moniker": "^0.1.2",
     "node-uuid": "^1.4.7",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "ace-editor-builds": "^1.2.0"
 
   },
 

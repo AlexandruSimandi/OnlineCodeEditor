@@ -2,7 +2,10 @@
  * Created by rober on 12/03/2016.
  */
 
-angular.module('codeEditorApp',['ui.router']);
+angular.module('codeEditorApp',[
+                                'ui.router',
+                                'ui.ace'
+]);
 
 angular
     .module('codeEditorApp')
