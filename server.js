@@ -23,14 +23,19 @@ routes(app);
 
 app.set('port', process.env.PORT || 3300);
 
-app.listen(app.get('port'), function () {
+//app.listen(app.get('port'), function () {
+//    global.projectDir = __dirname;
+//    console.log('Example app listening on port ' + app.get('port') + '!');
+//});
+http.listen(app.get('port'), function () {
     global.projectDir = __dirname;
     console.log('Example app listening on port ' + app.get('port') + '!');
 });
 
+
 var io = sio.listen(http);
 
-io.sockets.on('connection', function(socket){
+io.on('connection', function(socket){
 	console.log('client connected');
 
 	socket.on('text change', function(msg){

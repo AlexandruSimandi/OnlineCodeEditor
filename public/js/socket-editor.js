@@ -1,9 +1,9 @@
 $(document).ready(function(){
-	var socket = io.connect();
+	var socket = io();
 	setTimeout(function(){
 
 		var editor = ace.edit("editor");
-		editor.getSession().on('change', function(){
+		$('.ace_text-input').on('keyup', function(){
 			socket.emit('text change', editor.getValue());
 		})
 
