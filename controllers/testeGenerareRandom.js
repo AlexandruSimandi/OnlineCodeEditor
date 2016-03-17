@@ -3,8 +3,8 @@
  */
 var moniker = require('moniker');
 module.exports = {
-    index: function(res, req){
-        res.send('ceva');
+    index: function(req, res){
+        res.send(moniker.choose());
         //JSON.stringify({ generat: moniker.choose() })
     }
 };

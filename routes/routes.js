@@ -6,7 +6,8 @@ var express = require('express'),
     home = require('../controllers/home'),
     testeGenerareRandom = require('../controllers/testeGenerareRandom');
 module.exports = function(app) {
-    router.get('/', home.index);
+    router.get('/:room', home.index);
+    router.get('/', home.startRoom);
     router.get('/testeGenerareRandom', testeGenerareRandom.index);
     app.use(router);
 };
