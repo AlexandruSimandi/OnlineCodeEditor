@@ -8,7 +8,9 @@ $(document).ready(function(){
 		})
 
 		socket.on('text change', function(msg){
+			var cursor = editor.getCursorPosition();
 			editor.setValue(msg);
+			editor.gotoLine(cursor.row+1,cursor.column,false);
 		});
 	}, 200);
 
