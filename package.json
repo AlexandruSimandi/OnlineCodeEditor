@@ -10,20 +10,23 @@
   "main": "server.js",
   "keywords": [],
   "author": "",
-  "contributors": ["Alexandru Simandi", "Robert Sandu"],
+  "contributors": [
+    "Alexandru Simandi",
+    "Robert Sandu"
+  ],
   "dependencies": {
-
+    "ace-editor-builds": "^1.2.0",
     "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "jade": "^1.11.0",
     "mongodb": "^2.1.7",
     "mongoose": "^4.4.6",
-    "morgan": "^1.7.0",
     "moniker": "^0.1.2",
+    "morgan": "^1.7.0",
+    "mustache": "^2.2.1",
     "node-uuid": "^1.4.7",
-    "socket.io": "^1.4.5",
-    "ace-editor-builds": "^1.2.0"
-
+    "socket.io": "^1.4.5"
   },
-
   "devDependencies": {
     "bower": "^1.7.7",
     "gulp": "^3.9.1",
@@ -31,6 +34,5 @@
     "gulp-notify": "^2.2.0",
     "gulp-connect": "^3.1.0"
   },
-
   "license": "ISC"
 }
