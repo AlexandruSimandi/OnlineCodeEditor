@@ -39,8 +39,22 @@ var io = sio.listen(http);
 io.on('connection', function(socket){
 	console.log('client connected');
 
-	socket.on('text change', function(msg){
-		console.log(msg);
-		socket.broadcast.emit('text change',msg);
+	socket.on('subscribe', function(roomName){
+		console.logfff('join room: ' + roomName);
+		socket.join(roomName);
 	});
+
+	socket.on('text change', function(msg){
+		console.log('roomText: ' + msg.roomText);
+		console.log('roomName: ' + msg.roomName);
+		socket.broadcast.to(msg.roomName).emit('text change',{
+			roomText: msg.roomText,
+			roomName: msg.roomName
+		});
+	});
+
+	socket.on('disconnect', function(){
+		console.log('clientul se decontecteaza');
+	});
+
 });
