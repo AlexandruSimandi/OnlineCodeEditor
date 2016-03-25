@@ -5,8 +5,10 @@
 <title>Document</title>
 <link rel="stylesheet" href="/css/materialize.min.css">
 <!--<link rel="stylesheet" href="./node_modules/angular-materialize/css/style.css">-->
-<script src="/js/ace/ace.js"></script>
 <script src="/js/jquery.min.js"></script>
+<script src="/js/codemirror/lib/codemirror.js"></script>
+<script src="/js/codemirror/mode/javascript/javascript.js"></script>
+<!--<script src="/js/ace/ace.js"></script>-->
 <script src="/js/materialize.min.js"></script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/angular-ui-router.min.js"></script>
@@ -20,6 +22,7 @@
 <!--	<script src="/socket.io/socket.io.js"></script>-->
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/js/codemirror/lib/codemirror.css">
 </head>
 <body class="green lighten-5" ng-app="codeEditorApp">
 <!-- Dropdown Structure -->
@@ -45,11 +48,12 @@
 $(".dropdown-button").dropdown();
 </script>
 <main>
-<div class="container">
-
-    <div class="card-panel" ui-view></div>
-
-</div>
+	<div class="container">
+		<div class="row">
+			<textarea id="codemirror"></textarea>
+		</div>
+	<!--    <div class="card-panel" ui-view></div>-->
+	</div>
 </main>
 
 </body>
