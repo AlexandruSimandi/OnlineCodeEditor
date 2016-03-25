@@ -51,16 +51,24 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('text change', function(msg){
-		console.log('roomText: ' + msg.roomText);
+		console.log('roomEvent: ' + msg.roomEvent);
 		console.log('roomName: ' + msg.roomName);
 
-		var newRoom = mongoose.model('EditorRoom', editorRoom);
-		newRoom.update({ _id: msg.roomName }, { $set: { text: msg.roomText }}, function(err, rm){});
-
 		socket.broadcast.to(msg.roomName).emit('text change',{
-			roomText: msg.roomText,
+			roomEvent: msg.roomEvent,
 			roomName: msg.roomName
 		});
+	});
+
+	socket.on('delete row', function(msg){
+//		console.log('someone deleted a row');
+		socket.broadcast.to(msg.roomName).emit('delete row', msg);
+	});
+
+	socket.on('update room in database', function(msg){
+		console.log(msg.roomText);
+		var newRoom = mongoose.model('EditorRoom', editorRoom);
+		newRoom.update({ _id: msg.roomName }, { $set: { text: msg.roomText }},function(err, rm){});
 	});
 
 	socket.on('disconnect', function(){

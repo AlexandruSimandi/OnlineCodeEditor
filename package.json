@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "ace-editor-builds": "^1.2.0",
+    "codemirror": "^5.13.2",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "jade": "^1.11.0",
