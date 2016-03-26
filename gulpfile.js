@@ -36,6 +36,9 @@ gulp.task('javascript',function(){
 	gulp
 		.src(config.bowerDir + "/socket.io-client/socket.io.js")
 		.pipe(gulp.dest('./public/js'));
+	gulp
+		.src(config.nodeModulesDir + "/codemirror/**/*")
+		.pipe(gulp.dest('./public/js/codemirror'));
 });
 
 
