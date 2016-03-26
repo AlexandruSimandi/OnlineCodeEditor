@@ -51,8 +51,8 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('text change', function(msg){
-		console.log('roomEvent: ' + msg.roomEvent);
-		console.log('roomName: ' + msg.roomName);
+//		console.log('roomEvent: ' + msg.roomEvent);
+//		console.log('roomName: ' + msg.roomName);
 
 		socket.broadcast.to(msg.roomName).emit('text change',{
 			roomEvent: msg.roomEvent,
@@ -60,13 +60,9 @@ io.on('connection', function(socket){
 		});
 	});
 
-	socket.on('delete row', function(msg){
-//		console.log('someone deleted a row');
-		socket.broadcast.to(msg.roomName).emit('delete row', msg);
-	});
-
+	//todo ask for an update when someone new connects, maybe there was some edit between the 3 secs of saving in database
 	socket.on('update room in database', function(msg){
-		console.log(msg.roomText);
+//		console.log(msg.roomText);
 		var newRoom = mongoose.model('EditorRoom', editorRoom);
 		newRoom.update({ _id: msg.roomName }, { $set: { text: msg.roomText }},function(err, rm){});
 	});
