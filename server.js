@@ -51,8 +51,8 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('text change', function(msg){
-		console.log('roomEvent: ' + msg.roomEvent);
-		console.log('roomName: ' + msg.roomName);
+//		console.log('roomEvent: ' + msg.roomEvent);
+//		console.log('roomName: ' + msg.roomName);
 
 		socket.broadcast.to(msg.roomName).emit('text change',{
 			roomEvent: msg.roomEvent,
