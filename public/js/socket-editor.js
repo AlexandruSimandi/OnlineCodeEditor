@@ -1,7 +1,7 @@
 $(document).ready(function(){
 //	timeout for angular to load, have to fix this
 	setTimeout(function(){
-		var editor
+		var editor;
 		var textarea = document.getElementById('codemirror');
 		editor = CodeMirror.fromTextArea(textarea, {
 			lineNumbers: true,
@@ -15,7 +15,7 @@ $(document).ready(function(){
 		//database updated every 9 secs
 		setInterval(function(){
 //			console.log('database sent');
-			var text = editor.get
+			var text = editor.get;
 			socket.emit('update room in database', {
 				roomName: roomName,
 				roomText: editor.getDoc().getValue()
@@ -88,7 +88,7 @@ $(document).ready(function(){
 						line: obj.roomEvent.to.line, ch: obj.roomEvent.to.ch
 					});
 					break;
-			};
+			}
 		});
 	},250);
 
