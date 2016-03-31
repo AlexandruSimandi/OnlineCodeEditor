@@ -12,7 +12,7 @@ $(document).ready(function(){
 		var roomName = window.location.pathname.substring(1, window.location.pathname.length);
 		socket.emit('subscribe', roomName);
 
-		//database updated every 3 secs
+		//database updated every 9 secs
 		setInterval(function(){
 //			console.log('database sent');
 			var text = editor.get
@@ -20,7 +20,19 @@ $(document).ready(function(){
 				roomName: roomName,
 				roomText: editor.getDoc().getValue()
 			});
-		},3000);
+		},9000);
+
+		socket.on('request text', function(obj){
+			console.log('someone asked for text');
+			socket.emit('granted text' , {id: obj.id, text: editor.getDoc().getValue()});
+		});
+
+		socket.on('current text', function(text){
+			if(text != undefined){
+				console.log(text);
+				editor.getDoc().setValue(text);
+			}
+		});
 
 		editor.on('change', function(editor, event){
 			socket.emit('text change', {
@@ -78,7 +90,7 @@ $(document).ready(function(){
 					break;
 			};
 		});
-	},100);
+	},250);
 
 });
 

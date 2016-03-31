@@ -26,7 +26,6 @@ mongoose.connection.once('open', function() {
 
 mongoose.connect(connectionString);
 
-//adds link to server for all the static file in the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 var routes = require('./routes/routes.js');
@@ -48,7 +47,22 @@ io.on('connection', function(socket){
 	socket.on('subscribe', function(roomName){
 		console.log('join room: ' + roomName);
 		socket.join(roomName);
+		var clients = io.sockets.adapter.rooms[roomName];
+		console.log(clients.sockets);
+
+		//if there is someone else in the room already
+		if(clients.length > 1){
+			var chosenOne = Math.floor(Math.random() * (clients.length - 1));
+			console.log(chosenOne);
+			console.log(Object.keys(clients.sockets)[chosenOne]);
+			socket.broadcast.to(roomName).emit("request text", {id: socket.id})
+		}
 	});
+
+	socket.on('granted text', function(obj){
+		io.to(obj.id).emit('current text', obj.text);
+	});
+
 
 	socket.on('text change', function(msg){
 //		console.log('roomEvent: ' + msg.roomEvent);
@@ -60,7 +74,6 @@ io.on('connection', function(socket){
 		});
 	});
 
-	//todo ask for an update when someone new connects, maybe there was some edit between the 3 secs of saving in database
 	socket.on('update room in database', function(msg){
 //		console.log(msg.roomText);
 		var newRoom = mongoose.model('EditorRoom', editorRoom);
