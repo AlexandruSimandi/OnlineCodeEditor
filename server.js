@@ -56,8 +56,6 @@ io.on('connection', function(socket){
 		//console.log('join room: ' + roomName);
 		socket.join(roomName);
 		var clients = io.sockets.adapter.rooms[roomName];
-		console.log('clients');
-        console.log(clients);
 		if(clients.length > 1){
 
 			var chosenOne = Math.floor(Math.random() * (clients.length - 1));

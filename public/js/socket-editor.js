@@ -1,10 +1,17 @@
 $(document).ready(function(){
 	setTimeout(function(){
-		var editor;
+		var portviewHeight = $(window).height();
+		console.log(portviewHeight);
+
 		var textarea = document.getElementById('codemirror');
-		editor = CodeMirror.fromTextArea(textarea, {
+		var editor = CodeMirror.fromTextArea(textarea, {
 			lineNumbers: true,
 			mode: 'javascript'
+		});
+		$('.CodeMirror').height(portviewHeight - 64);
+		$(window).resize(function(e){
+			portviewHeight = $(window).height();
+			$('.CodeMirror').height(portviewHeight - 64);
 		});
 
 		var socket = io();

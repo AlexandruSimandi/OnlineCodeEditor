@@ -1,3 +1,15 @@
 .CodeMirror {
-	height: 81vh;
+/*	height: 94vh;*/
+}
+
+html {
+	overflow: hidden;
+}
+
+#modal1 {
+	height: 500px;
+}
+
+#themeSelect {
+	height: 100px;
 }
