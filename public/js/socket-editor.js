@@ -83,18 +83,39 @@ $(document).ready(function(){
 
 		$('#languageSelect').on('change', function(){
 
-			console.log($('#languageSelect').val());
+
 			var selectedLanguage = $('#languageSelect').val();
 			var script = document.createElement('script');
 			script.src = '/js/codemirror/mode/' + selectedLanguage + '/' + selectedLanguage + '.js';
 			script.onload = function () {
-				console.log('a fost incarcat modul pentru: ' + selectedLanguage);
+
 				editor.setOption("mode", selectedLanguage);
+
 			};
 
 			document.head.appendChild(script);
 
 		});
+
+
+		$('#themeSelect').on('change', function(){
+
+
+			var selectedTheme = $('#themeSelect').val();
+			var css = document.createElement('link');
+			css.rel = "stylesheet";
+			css.href = '/js/codemirror/theme/' +  selectedTheme + '.css';
+			css.onload = function () {
+
+				console.log('a incarcat');
+				editor.setOption("theme", selectedTheme);
+
+			};
+
+			document.head.appendChild(css);
+
+		});
+
 	},250);
 
 });
