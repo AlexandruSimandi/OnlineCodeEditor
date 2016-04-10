@@ -6,6 +6,7 @@ body {
 main {
 	flex: 1 0 auto;
 }
-.ace_editor  {
-	height : 200px;
+
+.CodeMirror {
+	height: 81vh;
 }

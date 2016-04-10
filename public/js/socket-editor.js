@@ -10,6 +10,7 @@ $(document).ready(function(){
 
 		var socket = io();
 		var roomName = window.location.pathname.substring(1, window.location.pathname.length);
+		$('#download').attr('href', '/download/' + roomName);
 		socket.emit('subscribe', roomName);
 
 		//database updated every 9 secs
