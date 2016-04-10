@@ -12,7 +12,6 @@ $(document).ready(function(){
 		$('#download').attr('href', '/download/' + roomName);
 		socket.emit('subscribe', roomName);
 
-		//database updated every 3 secs
 		setInterval(function(){
 			var text = editor.get;
 			socket.emit('update room in database', {
