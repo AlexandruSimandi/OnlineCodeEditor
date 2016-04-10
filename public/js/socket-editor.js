@@ -80,6 +80,21 @@ $(document).ready(function(){
 					break;
 			}
 		});
+
+		$('#languageSelect').on('change', function(){
+
+			console.log($('#languageSelect').val());
+			var selectedLanguage = $('#languageSelect').val();
+			var script = document.createElement('script');
+			script.src = '/js/codemirror/mode/' + selectedLanguage + '/' + selectedLanguage + '.js';
+			script.onload = function () {
+				console.log('a fost incarcat modul pentru: ' + selectedLanguage);
+				editor.setOption("mode", selectedLanguage);
+			};
+
+			document.head.appendChild(script);
+
+		});
 	},250);
 
 });

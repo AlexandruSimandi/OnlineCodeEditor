@@ -56,12 +56,13 @@ io.on('connection', function(socket){
 		//console.log('join room: ' + roomName);
 		socket.join(roomName);
 		var clients = io.sockets.adapter.rooms[roomName];
-		//console.log(clients.sockets);
+		console.log('clients');
+        console.log(clients);
 		if(clients.length > 1){
+
 			var chosenOne = Math.floor(Math.random() * (clients.length - 1));
-			//console.log(chosenOne);
-			//console.log(Object.keys(clients.sockets)[chosenOne]);
 			socket.broadcast.to(roomName).emit("request text", {id: socket.id})
+
 		}
 	});
 

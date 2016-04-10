@@ -31,7 +31,7 @@
 			<a href="#" class="brand-logo center">CodeEditorInc$$</a>
 			<ul class="right hide-on-med-and-down">
 				<li><a ui-sref=".about">About</a></li>
-				<li><a ui-sref=".settings">Settings</a></li>
+				<li><a href="#modal1" id="settings">Settings</a></li>
 				<!-- Dropdown Trigger -->
 				<li><a class="dropdown-button" href="#" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
 			</ul>
@@ -48,7 +48,44 @@
 				<i class="large material-icons">file_download</i>
 			</a>
 		</div>
+
+        <div id="modal1" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h4>Editor settings</h4>
+
+                <div class="col s12">
+                    <select id="languageSelect">
+                        <option value="" disabled selected>Choose your language</option>
+                        <option value="php">Php</option>
+                        <option value="javascript">Javascript</option>
+                        <option value="haskell">Haskell</option>
+                    </select>
+                    <label>Programming language</label>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
+
+        <script>
+
+            $(document).ready(function(){
+
+                $('#languageSelect').material_select();
+
+                $('#settings').on('click', function(){
+                    $('#modal1').openModal();
+                });
+
+            });
+
+        </script>
+
 	</main>
+
+
 
 </body>
 </html>
