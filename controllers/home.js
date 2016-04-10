@@ -19,7 +19,7 @@ module.exports = {
               if(err)
                   return handleError(err);
 
-              console.log("text: " + room.text);
+//              console.log("text: " + room.text);
 
           });
 

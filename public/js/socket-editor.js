@@ -13,14 +13,14 @@ $(document).ready(function(){
 		$('#download').attr('href', '/download/' + roomName);
 		socket.emit('subscribe', roomName);
 
-		//database updated every 9 secs
+		//database updated every 3 secs
 		setInterval(function(){
 			var text = editor.get;
 			socket.emit('update room in database', {
 				roomName: roomName,
 				roomText: editor.getDoc().getValue()
 			});
-		},9000);
+		},3000);
 
 		socket.on('request text', function(obj){
 			socket.emit('granted text' , {id: obj.id, text: editor.getDoc().getValue()});
