@@ -1,5 +1,4 @@
 $(document).ready(function(){
-//	timeout for angular to load, have to fix this
 	setTimeout(function(){
 		var editor;
 		var textarea = document.getElementById('codemirror');
