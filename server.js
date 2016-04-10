@@ -35,7 +35,7 @@ app.set('port', process.env.PORT || 3300);
 
 app.get('/download/:roomName', function(req, res){
 	res.set({'Content-Disposition':"attachment; filename=\"" + req.params.roomName + ".txt\"", 'Content-type': 'text/txt'});
-	//content
+	//sorry for useless commit, testing git setting for user.name
 	var EditorRoom = mongoose.model('EditorRoom', editorRoom);
 	EditorRoom.findOne({ '_id': req.params.roomName }, 'text', function (err, room) {
 		if (err) return handleError(err);
