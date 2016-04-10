@@ -42,7 +42,7 @@ app.get('/download/:roomName', function(req, res){
 	})
 });
 
-http.listen(app.get('port'), function () {
+var server = app.listen(app.get('port'), function () {
 	global.projectDir = __dirname;
 	console.log('Example app listening on port ' + app.get('port') + '!');
 });
@@ -82,3 +82,5 @@ io.on('connection', function(socket){
 	});
 
 });
+
+module.exports = server;

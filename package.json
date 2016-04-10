@@ -29,10 +29,13 @@
   },
   "devDependencies": {
     "bower": "^1.7.7",
+    "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-bower": "^0.0.13",
+    "gulp-connect": "^3.1.0",
     "gulp-notify": "^2.2.0",
-    "gulp-connect": "^3.1.0"
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
   },
   "license": "ISC"
 }
