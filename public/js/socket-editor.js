@@ -15,7 +15,6 @@ $(document).ready(function(){
 
 		//database updated every 9 secs
 		setInterval(function(){
-//			console.log('database sent');
 			var text = editor.get;
 			socket.emit('update room in database', {
 				roomName: roomName,
@@ -24,13 +23,11 @@ $(document).ready(function(){
 		},9000);
 
 		socket.on('request text', function(obj){
-			console.log('someone asked for text');
 			socket.emit('granted text' , {id: obj.id, text: editor.getDoc().getValue()});
 		});
 
 		socket.on('current text', function(text){
 			if(text != undefined){
-				console.log(text);
 				editor.getDoc().setValue(text);
 			}
 		});
@@ -43,11 +40,6 @@ $(document).ready(function(){
 		});
 
 		socket.on('text change', function(obj){
-	//		console.log(obj.roomEvent.from);
-	//		console.log(obj.roomEvent.to);
-	//		console.log(obj.roomEvent.text);
-	//		console.log(obj.roomEvent.removed);
-	//		console.log(obj.roomEvent.origin);
 			switch(obj.roomEvent.origin){
 				case('+input'):
 					var newlineFlag = '';
@@ -82,7 +74,6 @@ $(document).ready(function(){
 							str += '\n';
 						}
 					}
-					console.log(str);
 					editor.getDoc().replaceRange(str, {
 						line: obj.roomEvent.from.line, ch: obj.roomEvent.from.ch
 					},{

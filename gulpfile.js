@@ -27,12 +27,6 @@ gulp.task('javascript',function(){
     gulp
         .src(config.bowerDir + '/angular-materialize/src/angular-materialize.js')
         .pipe(gulp.dest('./public/js'));
-    gulp
-        .src(config.bowerDir + '/angular-ui-ace/ui-ace.min.js')
-        .pipe(gulp.dest('./public/js'));
-    gulp
-        .src(config.nodeModulesDir + '/ace-editor-builds/src/**/*')
-        .pipe(gulp.dest('./public/js/ace'));
 	gulp
 		.src(config.bowerDir + "/socket.io-client/socket.io.js")
 		.pipe(gulp.dest('./public/js'));
