@@ -3,8 +3,7 @@
  */
 
 angular.module('codeEditorApp',[
-                                'ui.router',
-                                'ui.ace'
+                                'ui.router'
 ]);
 
 angular
