@@ -4,3 +4,8 @@
 /bower_components/
 /node_modules/
 /npm-debug.log
+/public/js/codemirror
+/public/js/angular-materialize.js
+/public/js/angular-ui-router.min.js
+/public/js/angular.min.js
+/public/js/socket.io.js
