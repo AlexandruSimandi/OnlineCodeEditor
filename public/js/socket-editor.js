@@ -116,6 +116,22 @@ $(document).ready(function(){
 
 		});
 
+		$('#keymapSelect').on('change', function(){
+
+
+			var selectedKeymap = $('#keymapSelect').val();
+			var script = document.createElement('script');
+			script.src = '/js/codemirror/keymap/' + selectedKeymap + '.js';
+			script.onload = function () {
+
+				editor.setOption("keyMap", selectedKeymap);
+
+			};
+
+			document.head.appendChild(script);
+
+		});
+
 	},250);
 
 });

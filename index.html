@@ -115,6 +115,16 @@
                     <label>Editor Themes</label>
                 </div>
 
+                <div class="col s6">
+                    <select id="keymapSelect">
+                        <option value="" disabled selected>Choose your preferred keymap</option>
+                        <option value="emacs">emacs</option>
+                        <option value="sublime">sublime</option>
+                        <option value="vim">vim</option>
+                    </select>
+                    <label>KeyMap</label>
+                </div>
+
             </div>
 
             <div class="modal-footer">
@@ -129,6 +139,7 @@
 
                 $('#languageSelect').material_select();
                 $('#themeSelect').material_select();
+                $('#keymapSelect').material_select();
 
                 $('#settings').on('click', function(){
                     $('#modal1').openModal();
