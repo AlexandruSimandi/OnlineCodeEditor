@@ -2,6 +2,9 @@
  * Created by rober on 10/04/2016.
  */
 var request = require('supertest');
+var chai = require('chai');
+var expect = chai.expect;
+
 describe('loading express', function(){
 
     var server;
@@ -24,7 +27,16 @@ describe('loading express', function(){
 
         request(server)
             .get('/')
-            .expect(200, done);
+            .end(function(err, res){
+
+                if(err)
+                    return done(err);
+
+                console.log(res.header['location']);
+                expect(res.header['location']).to.include('/');
+                done();
+
+            });
 
     });
 
