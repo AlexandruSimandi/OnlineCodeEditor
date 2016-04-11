@@ -33,15 +33,6 @@ routes(app);
 
 app.set('port', process.env.PORT || 3300);
 
-app.get('/download/:roomName', function(req, res){
-	res.set({'Content-Disposition':"attachment; filename=\"" + req.params.roomName + ".txt\"", 'Content-type': 'text/txt'});
-	var EditorRoom = mongoose.model('EditorRoom', editorRoom);
-	EditorRoom.findOne({ '_id': req.params.roomName }, 'text', function (err, room) {
-		if (err) return handleError(err);
-		res.send(room.text);
-	})
-});
-
 var server = app.listen(app.get('port'), function () {
 	global.projectDir = __dirname;
 	console.log('Example app listening on port ' + app.get('port') + '!');
