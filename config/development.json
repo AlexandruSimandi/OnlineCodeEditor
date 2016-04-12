@@ -1,0 +1,5 @@
+{
+  "port": 3300,
+  "dbName": "codeEditorDB",
+  "mongoDBServerAdress": "mongodb://127.0.0.1:27017/"
+}

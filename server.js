@@ -2,36 +2,25 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var path = require('path');
-var gulp = require('gulp');
 var sio = require('socket.io');
-var mongoose = require('mongoose');
-var exphbs  = require('express-handlebars');
 var editorRoom = require('./models/editorRoom');
 var mongoose = require('mongoose');
-
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
-var dbName = 'codeEditorDB';
-var connectionString = 'mongodb://127.0.0.1:27017/' + dbName;
-mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
-mongoose.connection.once('open', function() {
-	console.log('functioneaza');
-});
+var config = require('./config');
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
+
 mongoose.connection.once('open', function() {
-	console.log('functioneaza');
+
 });
 
-mongoose.connect(connectionString);
+mongoose.connect(config.mongoDBServerAddress + config.dbName);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 var routes = require('./routes/routes.js');
 routes(app);
 
-app.set('port', process.env.PORT || 3300);
+app.set('port', config.port || process.env.PORT || 3300);
 
 var server = app.listen(app.get('port'), function () {
 	global.projectDir = __dirname;
@@ -39,7 +28,7 @@ var server = app.listen(app.get('port'), function () {
 });
 
 
-var io = sio.listen(http);
+var io = sio.listen(http, {});
 
 io.on('connection', function(socket){
 
@@ -49,7 +38,6 @@ io.on('connection', function(socket){
 		var clients = io.sockets.adapter.rooms[roomName];
 		if(clients.length > 1){
 
-			var chosenOne = Math.floor(Math.random() * (clients.length - 1));
 			socket.broadcast.to(roomName).emit("request text", {id: socket.id})
 
 		}
