@@ -27,7 +27,6 @@ var server = app.listen(app.get('port'), function () {
 	console.log('Example app listening on port ' + app.get('port') + '!');
 });
 
-
 var io = sio.listen(http, {});
 
 io.on('connection', function(socket){
@@ -62,4 +61,7 @@ io.on('connection', function(socket){
 
 });
 
-module.exports = server;
+module.exports = {
+    server: server,
+    app: app
+};

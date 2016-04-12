@@ -7,25 +7,26 @@ var expect = chai.expect;
 
 describe('loading express', function(){
 
-    var server;
+    var application;
 
     //we will load the express server (our app) before each test
     beforeEach(function() {
 
-        server = require('../server');
+        application = require('../server');
+        application.app.set('env', 'test');
 
     });
 
     //we will close the server after each test
     afterEach(function() {
 
-        server.close();
+        application.server.close();
 
     });
 
     it('response to /', function testSlash(done){
 
-        request(server)
+        request(application.server)
             .get('/')
             .end(function(err, res){
 
@@ -42,7 +43,7 @@ describe('loading express', function(){
 
     it('404 to other path', function testOtherPath(done){
 
-        request(server)
+        request(application.server)
             .get('/foo/bar')
             .expect(404, done);
 
