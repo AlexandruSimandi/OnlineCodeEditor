@@ -1,156 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Document</title>
-<link rel="stylesheet" href="/css/materialize.min.css">
-<script src="/js/jquery.min.js"></script>
-<script src="/js/codemirror/lib/codemirror.js"></script>
-<script src="/js/codemirror/mode/javascript/javascript.js"></script>
-<script src="/js/materialize.min.js"></script>
-<script src="/js/angular.min.js"></script>
-<script src="/js/angular-ui-router.min.js"></script>
-<script src="/js/socket.io.js"></script>
-<script src="/js/app/app.js"></script>
-<script src="/js/app/controller/editor.controller.js"></script>
-<script src="/js/socket-editor.js"></script>
-
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/js/codemirror/lib/codemirror.css">
-<link rel="stylesheet" href="/css/index.css">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/codemirror/lib/codemirror.js"></script>
+    <script src="/js/codemirror/mode/javascript/javascript.js"></script>
+    <script src="/js/materialize.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-ui-router.min.js"></script>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/app/app.js"></script>
+    <script src="/js/app/controller/editor.controller.js"></script>
+    <script src="/js/socket-editor.js"></script>
+    <script src="/js/codemirror/addon/search/search.js"></script>
+    <script src="/js/codemirror/addon/search/searchcursor.js"></script>
+    <script src="/js/codemirror/addon/search/jump-to-line.js"></script>
+    <script src="/js/codemirror/addon/search/match-highlighter.js"></script>
+    <script src="/js/codemirror/addon/search/matchesonscrollbar.js"></script>
+    <script src="/js/codemirror/addon/dialog/dialog.js"></script>
+    <script src="/js/codemirror/addon/scroll/annotatescrollbar.js"></script>
+    <script src="/js/codemirror/addon/selection/active-line.js"></script>
+    <script src="/js/codemirror/addon/hint/show-hint.js"></script>
+    <script src="/js/codemirror/addon/hint/anyword-hint.js"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/js/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/js/codemirror/addon/search/matchesonscrollbar.css">
+    <link rel="stylesheet" href="/js/codemirror/addon/dialog/dialog.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body class="green lighten-5" ng-app="codeEditorApp">
-	<ul id="dropdown1" class="dropdown-content">
-		<li><a href="#">one</a></li>
-		<li><a href="#">two</a></li>
-		<li class="divider"></li>
-		<li><a href="#">three</a></li>
-	</ul>
-	<nav class="green darken-4" role="navigation">
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo center">CodeEditorInc$$</a>
-			<ul class="right hide-on-med-and-down">
-				<li><a ui-sref=".about">About</a></li>
-				<li><a href="#modal1" id="settings">Settings</a></li>
-				<!-- Dropdown Trigger -->
-				<li><a class="dropdown-button" href="#" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-			</ul>
-		</div>
-	</nav>
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="#">one</a></li>
+    <li><a href="#">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#">three</a></li>
+</ul>
+<nav class="green darken-4" role="navigation">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">CodeEditorInc$$</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a ui-sref=".about">About</a></li>
+            <li><a href="#modal1" id="settings">Settings</a></li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-	<script type="application/javascript">
-		$(".dropdown-button").dropdown();
-	</script>
-	<main>
-		<div ui-view></div>
-		<div class="fixed-action-btn horizontal" style="bottom: 24px; right: 24px;">
-			<a id="download" class="btn-floating green darken-4 btn-large" title="download">
-				<i class="large material-icons">file_download</i>
-			</a>
-		</div>
+<script type="application/javascript">
+    $(".dropdown-button").dropdown();
+</script>
+<main>
+    <div ui-view></div>
+    <div class="fixed-action-btn horizontal" style="bottom: 24px; right: 24px;">
+        <a id="download" class="btn-floating green darken-4 btn-large" title="download">
+            <i class="large material-icons">file_download</i>
+        </a>
+    </div>
 
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <h4>Editor settings</h4>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Editor settings</h4>
 
-                <div class="col s6">
-                    <select id="languageSelect">
-                        <option value="" disabled selected>Choose your language</option>
-                        <option value="php">Php</option>
-                        <option value="javascript">Javascript</option>
-                        <option value="haskell">Haskell</option>
-                    </select>
-                    <label>Programming language</label>
-                </div>
-
-                <div class="col s6">
-                    <select id="themeSelect">
-                        <option value="" disabled selected>Choose your theme</option>
-                        <option value="3024-day">3024-day</option>
-                        <option value="3024-night">3024-night</option>
-                        <option value="abcdef">abcdef</option>
-                        <option value="ambiance-mobile">ambiance-mobile</option>
-                        <option value="ambiance">ambiance</option>
-                        <option value="base16-dark">base16-dark</option>
-                        <option value="base16-light">base16-light</option>
-                        <option value="bespin">bespin</option>
-                        <option value="blackboard">blackboard</option>
-                        <option value="cobalt">cobalt</option>
-                        <option value="colorforth">colorforth</option>
-                        <option value="dracula">dracula</option>
-                        <option value="eclipse">eclipse</option>
-                        <option value="elegant">elegant</option>
-                        <option value="erlang-dark">erlang-dark</option>
-                        <option value="hopscotch">hopscotch</option>
-                        <option value="icecoder">icecoder</option>
-                        <option value="isotope">isotope</option>
-                        <option value="lesser-dark">lesser-dark</option>
-                        <option value="liquibyte">liquibyte</option>
-                        <option value="material">material</option>
-                        <option value="mbo">mbo</option>
-                        <option value="mdn-like">mdn-like</option>
-                        <option value="midnight">midnight</option>
-                        <option value="monokai">monokai</option>
-                        <option value="neat">neat</option>
-                        <option value="neo">neo</option>
-                        <option value="night">night</option>
-                        <option value="paraiso-dark">paraiso-dark</option>
-                        <option value="paraiso-light">paraiso-light</option>
-                        <option value="pastel-on-dark">pastel-on-dark</option>
-                        <option value="railscasts">railscasts</option>
-                        <option value="rubyblue">rubyblue</option>
-                        <option value="seti">seti</option>
-                        <option value="solarized">solarized</option>
-                        <option value="the-matrix">the-matrix</option>
-                        <option value="tomorrow-night-bright">tomorrow-night-bright</option>
-                        <option value="tomorrow-night-eighties">tomorrow-night-eighties</option>
-                        <option value="ttcn">ttcn</option>
-                        <option value="twilight">twilight</option>
-                        <option value="vibrant-ink">vibrant-ink</option>
-                        <option value="xq-dark">xq-dark</option>
-                        <option value="xq-light">xq-light</option>
-                        <option value="yeti">yeti</option>">
-                        <option value="zenburn">zenburn</option>
-                    </select>
-                    <label>Editor Themes</label>
-                </div>
-
-                <div class="col s6">
-                    <select id="keymapSelect">
-                        <option value="" disabled selected>Choose your preferred keymap</option>
-                        <option value="emacs">emacs</option>
-                        <option value="sublime">sublime</option>
-                        <option value="vim">vim</option>
-                    </select>
-                    <label>KeyMap</label>
-                </div>
-
+            <div class="col s6">
+                <select id="languageSelect">
+                    <option value="" disabled selected>Choose your language</option>
+                    <option value="php">Php</option>
+                    <option value="javascript">Javascript</option>
+                    <option value="haskell">Haskell</option>
+                </select>
+                <label>Programming language</label>
             </div>
 
-            <div class="modal-footer">
-                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+            <div class="col s6">
+                <select id="themeSelect">
+                    <option value="" disabled selected>Choose your theme</option>
+                    <option value="3024-day">3024-day</option>
+                    <option value="3024-night">3024-night</option>
+                    <option value="abcdef">abcdef</option>
+                    <option value="ambiance-mobile">ambiance-mobile</option>
+                    <option value="ambiance">ambiance</option>
+                    <option value="base16-dark">base16-dark</option>
+                    <option value="base16-light">base16-light</option>
+                    <option value="bespin">bespin</option>
+                    <option value="blackboard">blackboard</option>
+                    <option value="cobalt">cobalt</option>
+                    <option value="colorforth">colorforth</option>
+                    <option value="dracula">dracula</option>
+                    <option value="eclipse">eclipse</option>
+                    <option value="elegant">elegant</option>
+                    <option value="erlang-dark">erlang-dark</option>
+                    <option value="hopscotch">hopscotch</option>
+                    <option value="icecoder">icecoder</option>
+                    <option value="isotope">isotope</option>
+                    <option value="lesser-dark">lesser-dark</option>
+                    <option value="liquibyte">liquibyte</option>
+                    <option value="material">material</option>
+                    <option value="mbo">mbo</option>
+                    <option value="mdn-like">mdn-like</option>
+                    <option value="midnight">midnight</option>
+                    <option value="monokai">monokai</option>
+                    <option value="neat">neat</option>
+                    <option value="neo">neo</option>
+                    <option value="night">night</option>
+                    <option value="paraiso-dark">paraiso-dark</option>
+                    <option value="paraiso-light">paraiso-light</option>
+                    <option value="pastel-on-dark">pastel-on-dark</option>
+                    <option value="railscasts">railscasts</option>
+                    <option value="rubyblue">rubyblue</option>
+                    <option value="seti">seti</option>
+                    <option value="solarized">solarized</option>
+                    <option value="the-matrix">the-matrix</option>
+                    <option value="tomorrow-night-bright">tomorrow-night-bright</option>
+                    <option value="tomorrow-night-eighties">tomorrow-night-eighties</option>
+                    <option value="ttcn">ttcn</option>
+                    <option value="twilight">twilight</option>
+                    <option value="vibrant-ink">vibrant-ink</option>
+                    <option value="xq-dark">xq-dark</option>
+                    <option value="xq-light">xq-light</option>
+                    <option value="yeti">yeti</option>
+                    ">
+                    <option value="zenburn">zenburn</option>
+                </select>
+                <label>Editor Themes</label>
+            </div>
+
+            <div class="col s6">
+                <select id="keymapSelect">
+                    <option value="" disabled selected>Choose your preferred keymap</option>
+                    <option value="emacs">emacs</option>
+                    <option value="sublime">sublime</option>
+                    <option value="vim">vim</option>
+                </select>
+                <label>KeyMap</label>
             </div>
 
         </div>
 
-        <script>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+        </div>
 
-            $(document).ready(function(){
+    </div>
 
-                $('#languageSelect').material_select();
-                $('#themeSelect').material_select();
-                $('#keymapSelect').material_select();
+    <script>
 
-                $('#settings').on('click', function(){
-                    $('#modal1').openModal();
-                });
+        $(document).ready(function () {
 
+            $('#languageSelect').material_select();
+            $('#themeSelect').material_select();
+            $('#keymapSelect').material_select();
+
+            $('#settings').on('click', function () {
+                $('#modal1').openModal();
             });
 
-        </script>
+        });
 
-	</main>
+    </script>
 
+</main>
 
 
 </body>

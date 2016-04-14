@@ -4,9 +4,15 @@ $(document).ready(function(){
 		console.log(portviewHeight);
 
 		var textarea = document.getElementById('codemirror');
+		CodeMirror.commands.autocomplete = function(cm) {
+			cm.showHint({hint: CodeMirror.hint.anyword});
+		}
 		var editor = CodeMirror.fromTextArea(textarea, {
 			lineNumbers: true,
-			mode: 'javascript'
+			mode: 'javascript',
+			highlightSelectionMatches: {showToken: /\w/, annotateScrollbar: true},
+			styleActiveLine: true,
+			extraKeys: {"Ctrl-Space": "autocomplete"}
 		});
 		$('.CodeMirror').height(portviewHeight - 64);
 		$(window).resize(function(e){
@@ -18,6 +24,9 @@ $(document).ready(function(){
 		var roomName = window.location.pathname.substring(1, window.location.pathname.length);
 		$('#download').attr('href', '/download/' + roomName);
 		socket.emit('subscribe', roomName);
+
+		console.log('roomName');
+		console.log(roomName);
 
 		setInterval(function(){
 			var text = editor.get;

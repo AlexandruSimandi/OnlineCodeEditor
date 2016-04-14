@@ -9,7 +9,7 @@ module.exports = {
   index: function(req, res){
       //favicon.ico
 
-      if(req.params.room !== 'favicon.ico'){
+      if(req.params.room !== 'favicon.ico' && req.params.room !== 'socket.io'){
           
           console.log('numele camerei: ' + req.params.room);
 
