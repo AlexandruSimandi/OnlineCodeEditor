@@ -6,6 +6,9 @@ var sio = require('socket.io');
 var editorRoom = require('./models/editorRoom');
 var mongoose = require('mongoose');
 var config = require('./config');
+var favicon = require('serve-favicon');
+
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
 
@@ -23,8 +26,10 @@ routes(app);
 app.set('port', config.port || process.env.PORT || 3300);
 
 var server = app.listen(app.get('port'), function () {
+
 	global.projectDir = __dirname;
 	console.log('Example app listening on port ' + app.get('port') + '!');
+    
 });
 
 var io = sio.listen(http, {});
@@ -63,5 +68,6 @@ io.on('connection', function(socket){
 
 module.exports = {
     server: server,
-    app: app
+    app: app,
+	mongoose: mongoose
 };

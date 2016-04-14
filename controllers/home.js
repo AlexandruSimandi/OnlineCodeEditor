@@ -10,6 +10,7 @@ module.exports = {
       //favicon.ico
 
       if(req.params.room !== 'favicon.ico'){
+          
           console.log('numele camerei: ' + req.params.room);
 
           var newRoom = mongoose.model('EditorRoom', editorRoom);
