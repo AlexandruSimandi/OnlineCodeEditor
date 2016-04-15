@@ -37,31 +37,16 @@ app.set('port', config.port || process.env.PORT || 3300);
 var server = app.listen(app.get('port'), "0.0.0.0", function () {
 
 	global.projectDir = __dirname;
-	console.log('Example app listening on port ' + app.get('port') + '!');
+	console.log('Code editor inc app listening on port ' + app.get('port') + '!');
     
 });
 
 var http = require('http').createServer(app).listen(3000);
-//
-
 var io = sio.listen(http);
-
-console.log('io');
-console.log(io);
-
-//var io = sio.listen(http);
 
 io.on('connection', function(socket){
 
-    console.log('connection');
-
 	socket.on('subscribe', function(roomName){
-
-        console.log('subscribe');
-        console.log('roomName');
-        console.log(roomName);
-        console.log('---------------------------------------------------');
-
 
         socket.join(roomName);
 		var clients = io.sockets.adapter.rooms[roomName];
@@ -78,13 +63,6 @@ io.on('connection', function(socket){
 
 	socket.on('text change', function(msg){
 
-        console.log('text change');
-        console.log('msg.roomName');
-        console.log(msg.roomName);
-        console.log('text: msg.roomText');
-        console.log(msg.roomText);
-        console.log('---------------------------------------------------');
-
 		socket.broadcast.to(msg.roomName).emit('text change',{
 			roomEvent: msg.roomEvent,
 			roomName: msg.roomName
@@ -92,13 +70,6 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('update room in database', function(msg){
-
-		console.log('update room in database');
-        console.log('msg.roomName');
-        console.log(msg.roomName);
-        console.log('text: msg.roomText');
-        console.log(msg.roomText);
-        console.log('---------------------------------------------------');
 
 		var newRoom = mongoose.model('EditorRoom', editorRoom);
 		newRoom.update({ _id: msg.roomName }, { $set: { text: msg.roomText }},function(err, rm){});
