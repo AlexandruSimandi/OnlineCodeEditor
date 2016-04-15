@@ -8,9 +8,9 @@ var mongoose = require('mongoose');
 module.exports = {
   index: function(req, res){
 
-      console.log('numele camerei: ' + req.params.room);
-
       if(req.params.room !== 'favicon.ico' && req.params.room !== 'socket.io'){
+
+          console.log('numele camerei: ' + req.params.room);
 
           var newRoom = mongoose.model('EditorRoom', editorRoom);
 
