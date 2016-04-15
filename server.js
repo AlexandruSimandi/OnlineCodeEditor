@@ -32,13 +32,21 @@ var server = app.listen(app.get('port'), function () {
     
 });
 
-var io = sio.listen(http, {});
+var io = sio.listen(http);
 
 io.on('connection', function(socket){
 
+    console.log('connection');
+
 	socket.on('subscribe', function(roomName){
-		//console.log('join room: ' + roomName);
-		socket.join(roomName);
+
+        console.log('subscribe');
+        console.log('roomName');
+        console.log(roomName);
+        console.log('---------------------------------------------------');
+
+
+        socket.join(roomName);
 		var clients = io.sockets.adapter.rooms[roomName];
 		if(clients.length > 1){
 
@@ -52,6 +60,14 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('text change', function(msg){
+
+        console.log('text change');
+        console.log('msg.roomName');
+        console.log(msg.roomName);
+        console.log('text: msg.roomText');
+        console.log(msg.roomText);
+        console.log('---------------------------------------------------');
+
 		socket.broadcast.to(msg.roomName).emit('text change',{
 			roomEvent: msg.roomEvent,
 			roomName: msg.roomName
@@ -59,15 +75,22 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('update room in database', function(msg){
-//		console.log(msg.roomText);
+
+		console.log('update room in database');
+        console.log('msg.roomName');
+        console.log(msg.roomName);
+        console.log('text: msg.roomText');
+        console.log(msg.roomText);
+        console.log('---------------------------------------------------');
+
 		var newRoom = mongoose.model('EditorRoom', editorRoom);
 		newRoom.update({ _id: msg.roomName }, { $set: { text: msg.roomText }},function(err, rm){});
 	});
 
 });
 
-module.exports = {
+/*module.exports = {
     server: server,
     app: app,
 	mongoose: mongoose
-};
+};*/

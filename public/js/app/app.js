@@ -8,7 +8,8 @@ angular.module('codeEditorApp',[
 
 angular
     .module('codeEditorApp')
-    .config(function($stateProvider, $urlRouterProvider){
+    .config(function($stateProvider, $urlRouterProvider, $locationProvider){
+
         //in cazul in care intra pe un url gresit il redirecteaza catre index.html
         $urlRouterProvider
             .otherwise('/');
@@ -16,7 +17,7 @@ angular
         //configurez starile aplicatiei
         $stateProvider
             .state('home',{
-                url: '/',
+                url: '/:roomName',
                 templateUrl: "views/partial-home.html"
             })
             .state('settings',{
@@ -27,4 +28,6 @@ angular
                 url: '/about',
                 templateUrl: "views/partial-about.html"
             });
+
+        $locationProvider.html5Mode(true);
     });

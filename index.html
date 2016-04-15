@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="/css/materialize.min.css">
@@ -8,11 +9,7 @@
     <script src="/js/codemirror/lib/codemirror.js"></script>
     <script src="/js/codemirror/mode/javascript/javascript.js"></script>
     <script src="/js/materialize.min.js"></script>
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/angular-ui-router.min.js"></script>
-    <script src="/js/socket.io.js"></script>
-    <script src="/js/app/app.js"></script>
-    <script src="/js/app/controller/editor.controller.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
     <script src="/js/socket-editor.js"></script>
     <script src="/js/codemirror/addon/search/search.js"></script>
     <script src="/js/codemirror/addon/search/searchcursor.js"></script>
@@ -54,7 +51,12 @@
     $(".dropdown-button").dropdown();
 </script>
 <main>
-    <div ui-view></div>
+    <div>
+
+
+        <textarea id="codemirror"></textarea>
+
+    </div>
     <div class="fixed-action-btn horizontal" style="bottom: 24px; right: 24px;">
         <a id="download" class="btn-floating green darken-4 btn-large" title="download">
             <i class="large material-icons">file_download</i>

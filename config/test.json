@@ -1,5 +1,5 @@
 {
   "port": 3300,
-  "dbName": "codeeditorinc",
+  "dbName": "codeEditorDB-test",
   "mongoDBServerAddress": "mongodb://userProiectNodeJs:userProiectNodeJs@ds023480.mlab.com:23480/"
 }
