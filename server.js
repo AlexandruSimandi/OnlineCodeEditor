@@ -6,6 +6,8 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var favicon = require('serve-favicon');
 var sio = require('socket.io');
+var morgan = require('morgan');
+var mongoMorgan = require('mongo-morgan');
 
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 
@@ -19,7 +21,7 @@ mongoose.connect(config.mongoDBServerAddress + config.dbName);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use(morgan('combined'));
 
 var logger = function(req, res, next) {
     console.log("GOT REQUEST !");

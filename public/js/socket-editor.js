@@ -1,7 +1,57 @@
 $(document).ready(function(){
 
+    if(localStorage.getItem('codeEditorIncSettings')){
+
+        var codeEditorIncSettings = JSON.parse(localStorage.getItem('codeEditorIncSettings'));
+
+        if(codeEditorIncSettings.hasOwnProperty('selectedLanguage')){
+
+            var selectedLanguage = codeEditorIncSettings.selectedLanguage;
+            var selectedLanguageScript = document.createElement('script');
+            selectedLanguageScript.src = '/js/codemirror/mode/' + selectedLanguage + '/' + selectedLanguage + '.js';
+            selectedLanguageScript.onload = function () {
+
+                editor.setOption("mode", selectedLanguage);
+
+            };
+
+            document.head.appendChild(selectedLanguageScript);
+
+        }
+
+        if(codeEditorIncSettings.hasOwnProperty('selectedKeymap')){
+
+            var selectedKeymap = codeEditorIncSettings.selectedKeymap;
+            var selectedKeymapScript = document.createElement('script');
+            selectedKeymapScript.src = '/js/codemirror/keymap/' + selectedKeymap + '.js';
+            selectedKeymapScript.onload = function () {
+
+                editor.setOption("keyMap", selectedKeymap);
+
+            };
+
+            document.head.appendChild(selectedKeymapScript);
+
+        }
+
+        if(codeEditorIncSettings.hasOwnProperty('selectedTheme')){
+
+            var selectedTheme = codeEditorIncSettings.selectedTheme;
+            var css = document.createElement('link');
+            css.rel = "stylesheet";
+            css.href = '/js/codemirror/theme/' +  selectedTheme + '.css';
+            css.onload = function () {
+
+                editor.setOption("theme", selectedTheme);
+            };
+
+            document.head.appendChild(css);
+
+        }
+
+    }
+
     var portviewHeight = $(window).height();
-    console.log(portviewHeight);
 
     var textarea = document.getElementById('codemirror');
     CodeMirror.commands.autocomplete = function(cm) {
@@ -20,29 +70,14 @@ $(document).ready(function(){
         $('.CodeMirror').height(portviewHeight - 64);
     });
 
-    console.log('io');
-    console.log(io);
 
     var socket = io.connect('http://localhost:3000');
     var roomName = window.location.pathname.substring(1, window.location.pathname.length);
     $('#download').attr('href', '/download/' + roomName);
 
-    console.log('se contecteaza la : ' + roomName);
-    console.log('socket');
-    console.log(socket);
     socket.emit('subscribe', roomName);
 
     setInterval(function(){
-
-        console.log('interval 3000 -  emit update room in database');
-        console.log('roomName');
-        console.log(roomName);
-        console.log('editor.getDoc().getValue()');
-        console.log(editor.getDoc().getValue());
-        console.log('socket');
-        console.log(socket);
-        console.log('-------------------------------------');
-
 
         socket.emit('update room in database', {
             roomName: roomName,
@@ -61,13 +96,6 @@ $(document).ready(function(){
     });
 
     editor.on('change', function(editor, event){
-
-        console.log('on change -  emit text change');
-        console.log('roomName');
-        console.log(roomName);
-        console.log('socket');
-        console.log(socket);
-        console.log('-------------------------------------');
 
         socket.emit('text change', {
             roomName: roomName,
@@ -129,6 +157,25 @@ $(document).ready(function(){
 
             editor.setOption("mode", selectedLanguage);
 
+            if(typeof localStorage !== 'undefined'){
+
+                var codeEditorIncSettings;
+
+                if(localStorage.getItem('codeEditorIncSettings')){
+
+                    codeEditorIncSettings = JSON.parse(localStorage.getItem('codeEditorIncSettings'));
+
+                }else{
+
+                    codeEditorIncSettings = {};
+
+                }
+
+                codeEditorIncSettings.selectedLanguage = selectedLanguage;
+                localStorage.setItem('codeEditorIncSettings', JSON.stringify(codeEditorIncSettings));
+
+            }
+
         };
 
         document.head.appendChild(script);
@@ -145,8 +192,26 @@ $(document).ready(function(){
         css.href = '/js/codemirror/theme/' +  selectedTheme + '.css';
         css.onload = function () {
 
-            console.log('a incarcat');
             editor.setOption("theme", selectedTheme);
+
+            if(typeof localStorage !== 'undefined'){
+
+                var codeEditorIncSettings;
+
+                if(localStorage.getItem('codeEditorIncSettings')){
+
+                    codeEditorIncSettings = JSON.parse(localStorage.getItem('codeEditorIncSettings'));
+
+                }else{
+
+                    codeEditorIncSettings = {};
+
+                }
+
+                codeEditorIncSettings.selectedTheme = selectedTheme;
+                localStorage.setItem('codeEditorIncSettings', JSON.stringify(codeEditorIncSettings));
+
+            }
 
         };
 
@@ -163,6 +228,25 @@ $(document).ready(function(){
         script.onload = function () {
 
             editor.setOption("keyMap", selectedKeymap);
+
+            if(typeof localStorage !== 'undefined'){
+
+                var codeEditorIncSettings;
+
+                if(localStorage.getItem('codeEditorIncSettings')){
+
+                    codeEditorIncSettings = JSON.parse(localStorage.getItem('codeEditorIncSettings'));
+
+                }else{
+
+                    codeEditorIncSettings = {};
+
+                }
+
+                codeEditorIncSettings.selectedKeymap = selectedKeymap;
+                localStorage.setItem('codeEditorIncSettings', JSON.stringify(codeEditorIncSettings));
+
+            }
 
         };
 

@@ -155,8 +155,11 @@
             $('#themeSelect').material_select();
             $('#keymapSelect').material_select();
 
-            $('#settings').on('click', function () {
+            $('#settings').on('click', function (event) {
+
+                event.preventDefault();
                 $('#modal1').openModal();
+
             });
 
         });
