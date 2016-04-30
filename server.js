@@ -1,3 +1,4 @@
+var compression = require('compression');
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -9,7 +10,15 @@ var sio = require('socket.io');
 var morgan = require('morgan');
 var mongoMorgan = require('mongo-morgan');
 
-app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
+app.use(compression());
+
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico'), {maxAge: 86400000 * 30}));
+
+app.use(express.static(path.join(__dirname, 'public'), {
+	maxAge: 86400000,
+	redirect: true,
+	hidden: false
+}));
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
 
@@ -18,8 +27,6 @@ mongoose.connection.once('open', function() {
 });
 
 mongoose.connect(config.mongoDBServerAddress + config.dbName);
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('combined'));
 

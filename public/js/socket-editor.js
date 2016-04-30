@@ -12,6 +12,7 @@ $(document).ready(function(){
             selectedLanguageScript.onload = function () {
 
                 editor.setOption("mode", selectedLanguage);
+                $("#languageSelect").val(selectedLanguage).change();
 
             };
 
@@ -27,6 +28,7 @@ $(document).ready(function(){
             selectedKeymapScript.onload = function () {
 
                 editor.setOption("keyMap", selectedKeymap);
+                $("#keymapSelect").val(selectedKeymap).change();
 
             };
 
@@ -43,6 +45,7 @@ $(document).ready(function(){
             css.onload = function () {
 
                 editor.setOption("theme", selectedTheme);
+                $("#themeSelect").val(selectedTheme).change();
             };
 
             document.head.appendChild(css);
