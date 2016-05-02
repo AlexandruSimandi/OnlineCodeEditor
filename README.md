@@ -35,12 +35,12 @@ List of packages
 Project structure
 ------------------
 
-| Name                      | Description                                                                 |
-|-------------------------------|-----------------------------------------------------------------------------|
-| **config**/index.js           ||
-| **config**/development.json   ||
-| **config**/production.json    ||
-| **config**/test.json          ||
+| Name                              | Description                                                                 |
+|-----------------------------------|-----------------------------------------------------------------------------|
+| **config**/_index.js_             ||
+| **config**/_development.json_     ||
+| **config**/_production.json_      ||
+| **config**/_test.json_            ||
 
 Prerequisites
 -------------
@@ -57,13 +57,16 @@ git clone --depth=1 https://github.com/AlexandruSimandi/OnlineCodeEditor.git som
 # change the directory to the project one
 cd someproject
 
+# required for mongo-morgan
+sudo apt-get install build-essential
+
 # install node package manager dependecies
 npm install
 
 # install bower dependencies
 bower install
 
-# run the default gulp that
+# run the default gulp
 gulp
 
 # start the server
