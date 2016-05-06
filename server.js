@@ -61,8 +61,8 @@ routes(app);
 app.set('port', config.port || process.env.PORT || 3300);
 
 var options = {
-	key: fs.readFileSync('/etc/nginx/ssl/cert_chain.crt'),
-	cert: fs.readFileSync('/etc/nginx/ssl/robertsandu_me.keylocalhost.crt')
+	key: fs.readFileSync('/etc/nginx/ssl/robertsandu_me.key'),
+	cert: fs.readFileSync('/etc/nginx/ssl/cert_chain.crt')
 	//requestCert: false,
 	//rejectUnauthorized: false
 };
