@@ -74,7 +74,7 @@ $(document).ready(function(){
     });
 
 
-    var socket = io.connect('https://robertsandu.me', {
+    var socket = io.connect('52.28.253.211:3000', {
         secure: true
     });
     var roomName = window.location.pathname.substring(1, window.location.pathname.length);
