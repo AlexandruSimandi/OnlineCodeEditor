@@ -9,6 +9,23 @@ var favicon = require('serve-favicon');
 var sio = require('socket.io');
 var morgan = require('morgan');
 var mongoMorgan = require('mongo-morgan');
+var fs = require('fs');
+var winston = require('winston');
+expressWinston = require('express-winston');
+
+app.use(expressWinston.logger({
+	transports: [
+		new winston.transports.Console({
+			json: true,
+			colorize: true
+		})
+	],
+	meta: true, // optional: control whether you want to log the meta data about the request (default to true)
+	msg: "HTTP {{req.method}} {{req.url}}", // optional: customize the default logging message. E.g. "{{res.statusCode}} {{req.method}} {{res.responseTime}}ms {{req.url}}"
+	expressFormat: true, // Use the default Express/morgan request formatting, with the same colors. Enabling this will override any msg and colorStatus if true. Will only output colors on transports with colorize set to true
+	colorStatus: true, // Color the status code, using the Express/morgan color palette (default green, 3XX cyan, 4XX yellow, 5XX red). Will not be recognized if expressFormat is true
+	ignoreRoute: function (req, res) { return false; } // optional: allows to skip some log messages based on request and/or response
+}));
 
 app.use(compression());
 
@@ -43,14 +60,21 @@ routes(app);
 
 app.set('port', config.port || process.env.PORT || 3300);
 
-var server = app.listen(app.get('port'), "0.0.0.0", function () {
+var options = {
+	key: fs.readFileSync('/etc/nginx/ssl/cert_chain.crt'),
+	cert: fs.readFileSync('/etc/nginx/ssl/robertsandu_me.keylocalhost.crt')
+	//requestCert: false,
+	//rejectUnauthorized: false
+};
+
+var server = require('http2').createServer(options, app).listen(app.get('port'), "0.0.0.0", function () {
 
 	global.projectDir = __dirname;
 	console.log('Code editor inc app listening on port ' + app.get('port') + '!');
     
 });
 
-var http = require('http').createServer(app).listen(3000);
+var http = require('http2').createServer(options, app).listen(3000);
 var io = sio.listen(http);
 
 io.on('connection', function(socket){
