@@ -120,7 +120,7 @@ io.on('connection', function(socket){
 		newRoom.update({ _id: msg.roomName }, { $set: { text: msg.roomText }},function(err, numAffected){
 
 			console.log('err: ' + err);
-			console.log('numAffected: ' + numAffected);
+			console.log('numAffected: ' + JSON.stringify(numAffected));
 
 		});
 	});
