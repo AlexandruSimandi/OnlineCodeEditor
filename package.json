@@ -1,19 +1,25 @@
 {
-  "name": "proiect",
-  "version": "1.0.0",
+  "name": "robertsandu.me",
+  "version": "0.0.9",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/AlexandruSimandi/OnlineCodeEditor.git"
+    "url": "git+https://github.com/AlexandruSimandi/OnlineCodeEditor.git"
   },
-  "description": "Proiect node js",
+  "description": "Online code editor synchronized between users",
   "main": "server.js",
-  "keywords": [],
+  "keywords": [
+    "editor",
+    "synchronized"
+  ],
   "author": "",
   "contributors": [
     "Alexandru Simandi",
     "Robert Sandu"
   ],
+  "engines": {
+    "node": "6.1.x"
+  },
   "dependencies": {
     "codemirror": "^5.13.2",
     "express": "^4.13.4",
