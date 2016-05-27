@@ -84,6 +84,8 @@ $(document).ready(function(){
 
     setInterval(function(){
 
+        console.log('update room in database: ' + editor.getDoc().getValue());
+
         socket.emit('update room in database', {
             roomName: roomName,
             roomText: editor.getDoc().getValue()
@@ -91,16 +93,25 @@ $(document).ready(function(){
     },3000);
 
     socket.on('request text', function(obj){
+
+        console.log('request text: ' + editor.getDoc().getValue());
+
         socket.emit('granted text' , {id: obj.id, text: editor.getDoc().getValue()});
+
     });
 
     socket.on('current text', function(text){
+
+        console.log('current text: ' + text);
+
         if(text != undefined){
             editor.getDoc().setValue(text);
         }
     });
 
     editor.on('change', function(editor, event){
+
+        console.log('change: ' + event);
 
         socket.emit('text change', {
             roomName: roomName,
@@ -109,6 +120,9 @@ $(document).ready(function(){
     });
 
     socket.on('text change', function(obj){
+
+        console.log('text change: ' + obj.roomEvent.origin);
+
         switch(obj.roomEvent.origin){
             case('+input'):
                 var newlineFlag = '';
