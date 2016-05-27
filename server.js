@@ -7,11 +7,11 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var favicon = require('serve-favicon');
 var sio = require('socket.io');
-var morgan = require('morgan');
-var mongoMorgan = require('mongo-morgan');
+//var morgan = require('morgan');
+//var mongoMorgan = require('mongo-morgan');
 var fs = require('fs');
-var winston = require('winston');
-expressWinston = require('express-winston');
+//var winston = require('winston');
+//expressWinston = require('express-winston');
 
 /*app.use(expressWinston.logger({
 	transports: [
@@ -68,14 +68,14 @@ var options = {
 	//rejectUnauthorized: false
 };
 
-var server = require('http2').createServer(options, app).listen(app.get('port'), "0.0.0.0", function () {
+var server = require('https').createServer(options, app).listen(app.get('port'), "0.0.0.0", function () {
 
 	global.projectDir = __dirname;
 	console.log('Code editor inc app listening on port ' + app.get('port') + '!');
     
 });
 
-var http = require('http2').createServer(options, app).listen(3000);
+var http = require('https').createServer(options, app).listen(3000);
 var io = sio.listen(http);
 
 io.on('connection', function(socket){
