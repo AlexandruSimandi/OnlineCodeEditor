@@ -6,12 +6,13 @@ var editorRoom = require('./models/editorRoom');
 var mongoose = require('mongoose');
 var config = require('./config');
 var favicon = require('serve-favicon');
-var sio = require('socket.io');
+//var sio = require('socket.io');
 //var morgan = require('morgan');
 //var mongoMorgan = require('mongo-morgan');
 var fs = require('fs');
 //var winston = require('winston');
 //expressWinston = require('express-winston');
+var https = require('https');
 
 /*app.use(expressWinston.logger({
 	transports: [
@@ -68,15 +69,15 @@ var options = {
 	//rejectUnauthorized: false
 };
 
-var server = require('https').createServer(options, app).listen(app.get('port'), "0.0.0.0", function () {
+var server = https.createServer(options, app).listen(443, "0.0.0.0", function () {
 
 	global.projectDir = __dirname;
-	console.log('Code editor inc app listening on port ' + app.get('port') + '!');
+	console.log('Code editor inc app listening on port ' + 443 + '!');
     
 });
 
-var http = require('https').createServer(options, app).listen(3000);
-var io = sio.listen(http);
+//var http = require('https').createServer(options, app).listen(3000);
+var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
 

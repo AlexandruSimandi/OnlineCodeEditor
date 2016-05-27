@@ -74,7 +74,7 @@ $(document).ready(function(){
     });
 
 
-    var socket = io.connect('https://robertsandu.me/socket.io');
+    var socket = io.connect('https://robertsandu.me:443');
     var roomName = window.location.pathname.substring(1, window.location.pathname.length);
     $('#download').attr('href', '/download/' + roomName);
 
