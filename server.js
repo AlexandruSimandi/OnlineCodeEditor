@@ -102,7 +102,7 @@ io.on('connection', function(socket){
 
 	socket.on('granted text', function(obj){
 
-		io.sockets.socket(obj.id).emit('current text', obj.text);
+		io.to(obj.id).emit('current text', obj.text);
 
 	});
 
