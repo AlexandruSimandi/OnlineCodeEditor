@@ -13,7 +13,7 @@ var fs = require('fs');
 var winston = require('winston');
 expressWinston = require('express-winston');
 
-app.use(expressWinston.logger({
+/*app.use(expressWinston.logger({
 	transports: [
 		new winston.transports.Console({
 			json: true,
@@ -25,7 +25,7 @@ app.use(expressWinston.logger({
 	expressFormat: true, // Use the default Express/morgan request formatting, with the same colors. Enabling this will override any msg and colorStatus if true. Will only output colors on transports with colorize set to true
 	colorStatus: true, // Color the status code, using the Express/morgan color palette (default green, 3XX cyan, 4XX yellow, 5XX red). Will not be recognized if expressFormat is true
 	ignoreRoute: function (req, res) { return false; } // optional: allows to skip some log messages based on request and/or response
-}));
+}));*/
 
 app.use(compression());
 
@@ -45,7 +45,7 @@ mongoose.connection.once('open', function() {
 
 mongoose.connect(config.mongoDBServerAddress + config.dbName);
 
-app.use(morgan('combined'));
+/*app.use(morgan('combined'));
 
 var logger = function(req, res, next) {
     console.log("GOT REQUEST !");
@@ -54,6 +54,7 @@ var logger = function(req, res, next) {
 };
 
 app.use(logger); // Here you add your logger to the stack.
+*/
 
 var routes = require('./routes/routes.js');
 routes(app);
