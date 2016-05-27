@@ -71,7 +71,7 @@ var options = {
 
 global.projectDir = __dirname;
 
-var server = https.createServer(options, app).listen(443);
+var server = https.createServer(options, app).listen(3300);
 
 /*
  , "0.0.0.0", function () {
