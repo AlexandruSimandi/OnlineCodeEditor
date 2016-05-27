@@ -114,6 +114,8 @@ io.on('connection', function(socket){
 
 	socket.on('update room in database', function(msg){
 
+		console.log('update room in database in back end: ' + msg.roomName + ', ' +  msg.roomText);
+
 		var newRoom = mongoose.model('EditorRoom', editorRoom);
 		newRoom.update({ _id: msg.roomName }, { $set: { text: msg.roomText }},function(err, rm){});
 	});
