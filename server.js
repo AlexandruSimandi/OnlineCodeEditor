@@ -69,12 +69,18 @@ var options = {
 	//rejectUnauthorized: false
 };
 
-var server = https.createServer(options, app).listen(443, "0.0.0.0", function () {
+global.projectDir = __dirname;
 
-	global.projectDir = __dirname;
-	console.log('Code editor inc app listening on port ' + 443 + '!');
-    
-});
+var server = https.createServer(options, app).listen(443);
+
+/*
+ , "0.0.0.0", function () {
+
+
+ console.log('Code editor inc app listening on port ' + 443 + '!');
+
+ }
+ */
 
 //var http = require('https').createServer(options, app).listen(3000);
 var io = require('socket.io')(server);
