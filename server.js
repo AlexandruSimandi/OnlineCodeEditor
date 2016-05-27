@@ -89,6 +89,8 @@ io.on('connection', function(socket){
 
 	socket.on('subscribe', function(roomName){
 
+		console.log('room name:' + roomName);
+
         socket.join(roomName);
 		var clients = io.sockets.adapter.rooms[roomName];
 		if(clients.length > 1){

@@ -79,6 +79,8 @@ $(document).ready(function(){
     $('#download').attr('href', '/download/' + roomName);
 
     socket.emit('subscribe', roomName);
+    console.log('socket');
+    console.log(socket);
 
     setInterval(function(){
 
