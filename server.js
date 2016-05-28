@@ -22,7 +22,7 @@ app.use(expressWinston.logger({
 			colorize: true
 		}),
 		new (winston.transports.MongoDB)({
-			db : config.dbName,
+			db : config.mongoDBServerAddress + config.dbName,
 			level : 'debug'
 		})
 
