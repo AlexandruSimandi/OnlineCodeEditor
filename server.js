@@ -23,9 +23,7 @@ app.use(expressWinston.logger({
 		}),
 		new (winston.transports.MongoDB)({
 			db : config.dbName,
-			level : 'debug',
-			//ssl : true,
-			dbUri : config.mongoDBServerAddress
+			level : 'debug'
 		})
 
 	],
