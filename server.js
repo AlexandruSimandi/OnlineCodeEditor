@@ -105,6 +105,22 @@ io.on('connection', function(socket){
 			socket.broadcast.to(roomName).emit("request text", {id: socket.id})
 
 		}
+		else{
+
+			editorRoom.findOne({_id: roomName}, 'text', function(err, roomObject) {
+
+				if(!err){
+
+					io.to(socket.id).emit('current text', roomObject.text);
+
+				}
+
+			});
+
+
+
+		}
+
 	});
 
 	socket.on('granted text', function(obj){
