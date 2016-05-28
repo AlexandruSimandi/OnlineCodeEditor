@@ -132,8 +132,15 @@
         </div>
 
         <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="">Ok</a>
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="modal-close">Ok</a>
         </div>
+
+        <script>
+			$('#modal-close').on('click', function (e) {
+				e.preventDefault();
+				$('#modal1').closeModal();
+			});
+		</script>
 
     </div>
 
