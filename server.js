@@ -14,6 +14,9 @@ var winston = require('winston');
 var expressWinston = require('express-winston');
 var https = require('https');
 require('winston-mongodb').MongoDB;
+var subdomain = require('express-subdomain');
+
+app.use(subdomain('codeeditor', router));
 
 app.use(expressWinston.logger({
 	transports: [
