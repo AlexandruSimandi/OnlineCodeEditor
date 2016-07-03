@@ -75,8 +75,8 @@ $(document).ready(function(){
 
 
     var socket = io.connect('https://robertsandu.me');
-    var roomName = window.location.pathname.substring(1, window.location.pathname.length);
-    $('#download').attr('href', '/download/' + roomName);
+    var roomName = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+    $('#download').attr('href', '/codeeditor/download/' + roomName);
 
     socket.emit('subscribe', roomName);
     console.log('socket');
