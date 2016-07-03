@@ -171,7 +171,7 @@ $(document).ready(function(){
 
         var selectedLanguage = $('#languageSelect').val();
         var script = document.createElement('script');
-        script.src = '/js/codemirror/mode/' + selectedLanguage + '/' + selectedLanguage + '.js';
+        script.src = '/proiectNodeJs/public/js/codemirror/mode/' + selectedLanguage + '/' + selectedLanguage + '.js';
         script.onload = function () {
 
             editor.setOption("mode", selectedLanguage);
@@ -208,7 +208,7 @@ $(document).ready(function(){
         var selectedTheme = $('#themeSelect').val();
         var css = document.createElement('link');
         css.rel = "stylesheet";
-        css.href = '/js/codemirror/theme/' +  selectedTheme + '.css';
+        css.href = '/proiectNodeJs/public/js/codemirror/theme/' +  selectedTheme + '.css';
         css.onload = function () {
 
             editor.setOption("theme", selectedTheme);
@@ -243,7 +243,7 @@ $(document).ready(function(){
 
         var selectedKeymap = $('#keymapSelect').val();
         var script = document.createElement('script');
-        script.src = '/js/codemirror/keymap/' + selectedKeymap + '.js';
+        script.src = '/proiectNodeJs/public/js/codemirror/keymap/' + selectedKeymap + '.js';
         script.onload = function () {
 
             editor.setOption("keyMap", selectedKeymap);
