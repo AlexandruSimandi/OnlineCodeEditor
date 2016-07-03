@@ -84,11 +84,11 @@ global.projectDir = __dirname;
 var server = https.createServer(options, app).listen(3300);
 
 // Redirect from http port to https
-var http = require('http');
+/*var http = require('http');
 http.createServer(function (req, res) {
 	res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
 	res.end();
-}).listen(8080);
+}).listen(8080);*/
 
 /*
  , "0.0.0.0", function () {
