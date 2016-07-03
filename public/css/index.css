@@ -6,10 +6,16 @@ html {
 	overflow: hidden;
 }
 
-#modal1 {
-	height: 500px;
+.modal {
+	max-height: 100%;
+	min-height: 300px !important;
 }
 
-#themeSelect {
-	height: 100px;
+.modal-content > div:nth-child(3) .dropdown-content {
+	height: 300px !important;
 }
+
+.modal-footer {
+	margin-top: 180px;
+}
+
