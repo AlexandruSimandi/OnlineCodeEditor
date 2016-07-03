@@ -99,8 +99,8 @@ http.createServer(function (req, res) {
  }
  */
 
-//var http = require('https').createServer(options, app).listen(3000);
-var io = require('socket.io')(server);
+var socketIoServer = require('https').createServer(options, app).listen(3000);
+var io = require('socket.io')(socketIoServer);
 
 io.on('connection', function(socket){
 
