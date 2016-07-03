@@ -36,7 +36,7 @@ module.exports = {
             text: ""
         });
         room.save();
-        res.redirect('/' + newRoomName);
+        res.redirect('/codeeditor/' + newRoomName);
 
     }
 };
