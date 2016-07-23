@@ -3,7 +3,7 @@
 <head>
     <base href="/">
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Online Code Editor</title>
     <link rel="stylesheet" href="/proiectNodeJs/public/css/materialize.min.css">
     <script src="/proiectNodeJs/public/js/jquery.min.js"></script>
     <script src="/proiectNodeJs/public/js/codemirror/lib/codemirror.js"></script>
@@ -21,6 +21,7 @@
     <script src="/proiectNodeJs/public/js/codemirror/addon/selection/active-line.js"></script>
     <script src="/proiectNodeJs/public/js/codemirror/addon/hint/show-hint.js"></script>
     <script src="/proiectNodeJs/public/js/codemirror/addon/hint/anyword-hint.js"></script>
+    <script src="/proiectNodeJs/public/js/clipboard.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/proiectNodeJs/public/js/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="/proiectNodeJs/public/js/codemirror/addon/search/matchesonscrollbar.css">
@@ -47,7 +48,11 @@
 
     </div>
     <div class="fixed-action-btn horizontal" style="bottom: 24px; right: 24px;">
-        <a id="download" class="btn-floating green darken-4 btn-large" title="download">
+        <a id="share" class="btn-floating green darken-4 btn-large tooltipped" data-position="top" data-delay="50" data-tooltip="Copy to clipboard link">
+        	<i class="large material-icons">assignment</i>
+        </a>
+
+        <a id="download" class="btn-floating green darken-4 btn-large tooltipped" data-position="top" data-delay="50" data-tooltip="Download">
             <i class="large material-icons">file_download</i>
         </a>
     </div>
@@ -151,6 +156,7 @@
             $('#themeSelect').material_select();
             $('#keymapSelect').material_select();
 
+
             $('#settings').on('click', function (event) {
 
                 event.preventDefault();
@@ -158,6 +164,16 @@
 
             });
 
+			$('#share').attr('data-clipboard-text', window.location);
+
+			var clipboard = new Clipboard('#share');;
+
+			clipboard.on('success', function(e) {
+				Materialize.toast('link copied to clipboard', 4000)
+			});
+			clipboard.on('error', function(e) {
+				window.prompt("Copy this text and press Enter", window.location);
+			});
         });
 
     </script>
