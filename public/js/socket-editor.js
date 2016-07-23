@@ -8,7 +8,7 @@ $(document).ready(function(){
 
             var selectedLanguage = codeEditorIncSettings.selectedLanguage;
             var selectedLanguageScript = document.createElement('script');
-            selectedLanguageScript.src = '/js/codemirror/mode/' + selectedLanguage + '/' + selectedLanguage + '.js';
+            selectedLanguageScript.src = '/proiectNodeJs/public/js/codemirror/mode/' + selectedLanguage + '/' + selectedLanguage + '.js';
             selectedLanguageScript.onload = function () {
 
                 editor.setOption("mode", selectedLanguage);
@@ -24,7 +24,7 @@ $(document).ready(function(){
 
             var selectedKeymap = codeEditorIncSettings.selectedKeymap;
             var selectedKeymapScript = document.createElement('script');
-            selectedKeymapScript.src = '/js/codemirror/keymap/' + selectedKeymap + '.js';
+            selectedKeymapScript.src = '/proiectNodeJs/public/js/codemirror/keymap/' + selectedKeymap + '.js';
             selectedKeymapScript.onload = function () {
 
                 editor.setOption("keyMap", selectedKeymap);
@@ -41,7 +41,7 @@ $(document).ready(function(){
             var selectedTheme = codeEditorIncSettings.selectedTheme;
             var css = document.createElement('link');
             css.rel = "stylesheet";
-            css.href = '/js/codemirror/theme/' +  selectedTheme + '.css';
+            css.href = '/proiectNodeJs/public/js/codemirror/theme/' +  selectedTheme + '.css';
             css.onload = function () {
 
                 editor.setOption("theme", selectedTheme);
