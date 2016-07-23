@@ -21,6 +21,7 @@
     "node": "6.1.x"
   },
   "dependencies": {
+    "clipboard": "^1.5.12",
     "codemirror": "^5.13.2",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",

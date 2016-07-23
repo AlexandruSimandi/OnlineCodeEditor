@@ -33,6 +33,9 @@ gulp.task('javascript',function(){
 	gulp
 		.src(config.nodeModulesDir + "/codemirror/**/*")
 		.pipe(gulp.dest('./public/js/codemirror'));
+	gulp
+		.src(config.nodeModulesDir + "/clipboard/dist/clipboard.min.js")
+		.pipe(gulp.dest('./public/js'));
 });
 
 
