@@ -163,6 +163,34 @@ $(document).ready(function(){
                     line: obj.roomEvent.to.line, ch: obj.roomEvent.to.ch
                 });
                 break;
+			case('undo'):
+                var str = '';
+                for(var i = 0; i < obj.roomEvent.text.length; i++){
+                    str += obj.roomEvent.text[i];
+                    if(i < obj.roomEvent.text.length - 1){
+                        str += '\n';
+                    }
+                }
+                editor.getDoc().replaceRange(str, {
+                    line: obj.roomEvent.from.line, ch: obj.roomEvent.from.ch
+                },{
+                    line: obj.roomEvent.to.line, ch: obj.roomEvent.to.ch
+                });
+                break;
+			case('redo'):
+                var str = '';
+                for(var i = 0; i < obj.roomEvent.text.length; i++){
+                    str += obj.roomEvent.text[i];
+                    if(i < obj.roomEvent.text.length - 1){
+                        str += '\n';
+                    }
+                }
+                editor.getDoc().replaceRange(str, {
+                    line: obj.roomEvent.from.line, ch: obj.roomEvent.from.ch
+                },{
+                    line: obj.roomEvent.to.line, ch: obj.roomEvent.to.ch
+                });
+                break;
         }
     });
 
