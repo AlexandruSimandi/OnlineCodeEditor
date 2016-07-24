@@ -68,7 +68,7 @@ $(document).ready(function(){
         cm.showHint({hint: CodeMirror.hint.anyword});
     };
 
-    CodeMirror.defineInitHook(function(){
+    CodeMirror.defineInitHook(function(edt){
 
         loadSavedSettings(edt);
 
