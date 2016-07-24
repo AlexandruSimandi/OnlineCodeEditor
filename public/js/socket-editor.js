@@ -67,6 +67,13 @@ $(document).ready(function(){
     CodeMirror.commands.autocomplete = function(cm) {
         cm.showHint({hint: CodeMirror.hint.anyword});
     };
+
+    CodeMirror.defineInitHook(function(){
+
+        loadSavedSettings(edt);
+
+    });
+
     var editor = CodeMirror.fromTextArea(textarea, {
         lineNumbers: true,
         mode: 'javascript',
@@ -79,8 +86,6 @@ $(document).ready(function(){
         portviewHeight = $(window).height();
         $('.CodeMirror').height(portviewHeight - 64);
     });
-
-    loadSavedSettings(editor);
 
     var socket = io.connect('https://robertsandu.me');
     var roomName = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
