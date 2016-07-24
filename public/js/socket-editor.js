@@ -1,5 +1,5 @@
 //load saved settings from localStorage
-function loadSavedSettings(edtitor){
+function loadSavedSettings(editor){
 
     if(localStorage.getItem('codeEditorIncSettings')){
 
