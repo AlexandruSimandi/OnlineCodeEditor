@@ -1,4 +1,5 @@
-$(document).ready(function(){
+//load saved settings from localStorage
+function loadSavedSettings(edtitor){
 
     if(localStorage.getItem('codeEditorIncSettings')){
 
@@ -54,6 +55,12 @@ $(document).ready(function(){
 
     }
 
+}
+
+
+$(document).ready(function(){
+
+    
     var portviewHeight = $(window).height();
 
     var textarea = document.getElementById('codemirror');
@@ -73,6 +80,7 @@ $(document).ready(function(){
         $('.CodeMirror').height(portviewHeight - 64);
     });
 
+    loadSavedSettings(editor);
 
     var socket = io.connect('https://robertsandu.me');
     var roomName = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
