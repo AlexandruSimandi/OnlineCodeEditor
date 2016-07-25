@@ -48,7 +48,7 @@
 
     </div>
     <div class="fixed-action-btn horizontal" style="bottom: 24px; right: 24px;">
-        <a id="share" class="btn-floating green darken-4 btn-large tooltipped" data-position="top" data-delay="50" data-tooltip="Copy to clipboard link">
+        <a id="share" class="btn-floating green darken-4 btn-large tooltipped" data-position="top" data-delay="50" data-tooltip="Copy link to clipboard">
         	<i class="large material-icons">assignment</i>
         </a>
 
@@ -166,10 +166,29 @@
 
 			$('#share').attr('data-clipboard-text', window.location);
 
-			var clipboard = new Clipboard('#share');;
+
+			//counts visits so that it knows when to display tips
+			var visits = localStorage.getItem('visits');
+			if(visits == null){
+				visits = 1;
+			} else {
+				visits++;
+			}
+			localStorage.setItem('visits', visits);
+
+			if(visits < 3){
+				Materialize.toast('Press the button below to copy link and share your code with others', 5000);
+			}
+
+			var clipboard = new Clipboard('#share');
 
 			clipboard.on('success', function(e) {
-				Materialize.toast('link copied to clipboard', 4000)
+				Materialize.toast('Link copied to clipboard', 4000);
+				if(visits < 3){
+					setTimeout(function(){
+						Materialize.toast('Anyone with the link can see what you are typing', 4000);
+					}, 4000);
+				}
 			});
 			clipboard.on('error', function(e) {
 				window.prompt("Copy this text and press Enter", window.location);
