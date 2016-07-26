@@ -4,7 +4,7 @@ OnlineCodeEditor
 Node.js project
 ---------------
 
-Live version [robertsandu.me](http://robertsandu.me).
+Live version [robertsandu.me/codeeditor](http://robertsandu.me/codeeditor).
 
 Table of contents
 -----------------
@@ -35,12 +35,12 @@ List of packages
 Project structure
 ------------------
 
-| Name                              | Description                                                                 |
-|-----------------------------------|-----------------------------------------------------------------------------|
-| **config**/_index.js_             ||
-| **config**/_development.json_     ||
-| **config**/_production.json_      ||
-| **config**/_test.json_            ||
+| Name                              | Description                                                                   |
+|-----------------------------------|-------------------------------------------------------------------------------|
+| **config**/_index.js_             |                                                                               |
+| **config**/_development.json_     | development  settings                                                         |
+| **config**/_production.json_      | production settings                                                           |
+| **config**/_test.json_            | test settings                                                                 |
 
 Prerequisites
 -------------
