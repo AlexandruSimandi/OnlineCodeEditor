@@ -6,9 +6,6 @@ var editorRoom = require('./models/editorRoom');
 var mongoose = require('mongoose');
 var config = require('./config');
 var favicon = require('serve-favicon');
-//var sio = require('socket.io');
-//var morgan = require('morgan');
-//var mongoMorgan = require('mongo-morgan');
 var fs = require('fs');
 var winston = require('winston');
 var expressWinston = require('express-winston');
@@ -152,7 +149,14 @@ io.on('connection', function(socket){
 		console.log('update room in database in back end: ' + msg.roomName + ', ' +  msg.roomText);
 
 		var newRoom = mongoose.model('EditorRoom', editorRoom);
-		newRoom.update({ _id: msg.roomName }, { $set: { text: msg.roomText }},function(err, numAffected){
+
+		var options = {
+			//If the object dosen't exits it will be created
+			upsert: true,
+			multi: true
+		};
+
+		newRoom.update({ _id: msg.roomName }, { text: msg.roomText }, options,function(err, numAffected){
 
 			console.log('err: ' + err);
 			console.log('numAffected: ' + JSON.stringify(numAffected));
