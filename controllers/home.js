@@ -14,7 +14,25 @@ module.exports = {
 
           var newRoom = mongoose.model('EditorRoom', editorRoom);
 
-          newRoom.findOne({ '_id': req.params.room}, function(err, room){
+          var update = {
+
+            $setOnInsert: {
+
+                _id: req.params.room,
+                text: ""
+
+            }
+
+          };
+
+          var options = {
+              
+            //If the object dosen't exits it will be created
+            upsert: true
+
+          };
+
+          newRoom.findOneAndUpdate({ '_id': req.params.room}, update, options, function(err, room){
 
               if(err)
                   return handleError(err);
