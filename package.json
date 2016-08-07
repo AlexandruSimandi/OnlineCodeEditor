@@ -1,5 +1,5 @@
 {
-  "name": "robertsandu.me/codeeditor",
+  "name": "codeeditor",
   "version": "0.0.9",
   "private": true,
   "repository": {
@@ -20,6 +20,8 @@
   "engines": {
     "node": "6.1.x"
   },
+  "license": "GNU GPLv3",
+  "readme": "README.md",
   "dependencies": {
     "clipboard": "^1.5.12",
     "codemirror": "^5.13.2",
@@ -44,7 +46,8 @@
     "gulp-notify": "^2.2.0",
     "mocha": "^2.4.5",
     "sinon": "^1.17.3",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "pem": "^1.8.3"    
   },
   "license": "ISC"
 }
