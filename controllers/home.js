@@ -3,7 +3,7 @@
  */
 var moniker = require('moniker');
 var mongoose = require('mongoose');
-var editorRoom = mongoose.model('EditorRoom').schema;
+var editorRoom = mongoose.model('EditorRoom').schema; 
 
 module.exports = {
   index: function(req, res){
@@ -49,7 +49,7 @@ module.exports = {
     startRoom: function(req, res){
 
         var newRoomName = moniker.choose();
-        var room = new editorRoom({
+        var room = editorRoom({
             _id: newRoomName,
             text: ""
         });
