@@ -49,7 +49,10 @@ module.exports = {
     startRoom: function(req, res){
 
         var newRoomName = moniker.choose();
-        var room = editorRoom({
+
+        var roomSchema = mongoose.model('EditorRoom', editorRoom);
+
+        var room = new roomSchema({
             _id: newRoomName,
             text: ""
         });
