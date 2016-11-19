@@ -2,8 +2,8 @@
  * Created by rober on 12/03/2016.
  */
 var moniker = require('moniker');
-var editorRoom = require('../models/editorRoom');
 var mongoose = require('mongoose');
+var editorRoom = mongoose.model('EditorRoom').schema;
 
 module.exports = {
   index: function(req, res){
