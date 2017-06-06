@@ -20,21 +20,22 @@
   "engines": {
     "node": "6.1.x"
   },
-  "license": "GNU GPLv3",
+  "license": "MIT",
   "readme": "README.md",
   "dependencies": {
-    "clipboard": "^1.5.12",
-    "codemirror": "^5.13.2",
-    "express": "^4.13.4",
-    "express-winston": "^1.3.1",
+    "clipboard": "^1.7.1",
+    "codemirror": "^5.26.0",
+    "express": "^4.15.3",
+    "express-winston": "^2.4.0",
     "http2": "^3.3.4",
     "https": "^1.0.0",
-    "mongodb": "^2.1.7",
-    "mongoose": "^4.4.6",
+    "mongodb": "^2.2.28",
+    "mongoose": "^4.10.4",
     "moniker": "^0.1.2",
-    "morgan": "^1.7.0",
+    "morgan": "^1.8.2",
     "node-uuid": "^1.4.7",
-    "socket.io": "^1.4.5",
+    "socket.io": "^2.0.2",
+    "winston": "^2.3.1",
     "winston-mongodb": "^1.5.0"
   },
   "devDependencies": {
@@ -45,9 +46,8 @@
     "gulp-connect": "^3.1.0",
     "gulp-notify": "^2.2.0",
     "mocha": "^2.4.5",
+    "pem": "^1.9.7",
     "sinon": "^1.17.3",
-    "supertest": "^1.2.0",
-    "pem": "^1.8.3"    
-  },
-  "license": "ISC"
+    "supertest": "^1.2.0"
+  }
 }
