@@ -37,8 +37,6 @@ module.exports = {
               if(err)
                   return handleError(err);
 
-//              console.log("text: " + room.text);
-
           });
 
           res.sendFile(global.projectDir + "/index.html");
@@ -50,6 +48,9 @@ module.exports = {
 
         var newRoomName = moniker.choose();
 
+        console.log('newRoomName');
+        console.log(newRoomName);
+
         var roomSchema = mongoose.model('EditorRoom', editorRoom);
 
         var room = new roomSchema({
@@ -57,7 +58,7 @@ module.exports = {
             text: ""
         });
         room.save();
-        res.redirect('/codeeditor/' + newRoomName);
+        res.redirect(newRoomName);
 
     }
 };

@@ -1,6 +1,7 @@
 var compression = require('compression');
 var express = require('express');
 var app = express();
+var router = express.Router();
 var path = require('path');
 var editorRoom = require('./models/editorRoom');
 var mongoose = require('mongoose');
@@ -14,7 +15,9 @@ require('winston-mongodb').MongoDB;
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.use(expressWinston.logger({
+var routes = require('./routes/routes.js');
+
+/*app.use(expressWinston.logger({
 	transports: [
 		new winston.transports.Console({
 			json: true,
@@ -31,7 +34,7 @@ app.use(expressWinston.logger({
 	expressFormat: true,
 	colorStatus: true,
 	ignoreRoute: function (req, res) { return false; }
-}));
+}));*/
 
 app.use(compression());
 
@@ -46,14 +49,10 @@ app.use(express.static(path.join(__dirname, 'public'), {
 mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
 
 mongoose.connection.once('open', function() {
-
+	console.log('connection opened');
 });
 
 mongoose.connect(config.mongoDBServerAddress + config.dbName);
-
-var routes = require('./routes/routes.js');
-
-routes(app);
 
 app.set('port', config.port || process.env.PORT || 3300);
 
@@ -123,6 +122,17 @@ io.on('connection', function(socket){
 	});
 
 });
+
+routes(app);
+
+router.stack.forEach(function(element) {
+	console.log('element');
+	console.log(element);
+}, this);
+
+app.listen(3300, function () {
+  console.log('Example app listening on port 3000!')
+})
 
 module.exports = {
     app: app,
