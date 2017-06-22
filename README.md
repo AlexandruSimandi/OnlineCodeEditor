@@ -1,10 +1,6 @@
 OnlineCodeEditor
 ================
 
-Node.js project
----------------
-
-Live version [robertsandu.me/codeeditor](http://robertsandu.me/codeeditor).
 
 Table of contents
 -----------------
